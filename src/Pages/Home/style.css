@@ -1,0 +1,93 @@
+h2 {
+  font-size: 3rem;
+}
+
+.voltar {
+  border-radius: 30px;
+}
+
+.first-row {
+  color: var(--gray-200);
+}
+
+.welcome {
+  flex-grow: 1;
+}
+
+.container {
+  background-color: var(--gray-0);
+  padding: 5rem;
+}
+
+.main {
+  background-color: #fff;
+}
+
+.photo img {
+  width: 10rem;
+  height: auto;
+}
+
+.name {
+  font-size: 1.5rem;
+  color: var(--gray-100);
+}
+
+.id {
+  background: linear-gradient(#c153f5, #b254df);
+  padding: 0.2rem 0.5rem !important;
+  border-radius: 30px;
+  color: #fff;
+}
+.gerenciamento-row {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr 1fr;
+  margin: 3rem 3rem !important;
+  grid-gap: 3rem;
+}
+.botaoMenu {
+  border-radius: 30px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10rem;
+  filter: drop-shadow(5px 6px 30px rgba(0, 0, 0, 25%));
+  cursor: pointer;
+  transition: 0.5s;
+}
+.botaoMenu:hover {
+  opacity: 0.8;
+}
+.botao {
+  border-radius: 30px;
+
+  font-size: 1.7rem;
+}
+.categoria {
+  background: linear-gradient(to bottom right, #7ccb85, #4ca2cd);
+}
+
+.produtos {
+  background: linear-gradient(to bottom right, #de6161, #2657eb 120%);
+}
+
+.comandasAtivas {
+  background: linear-gradient(to bottom right, #3b4371 40%, #f3904f 120%);
+}
+
+.novaComanda {
+  background: linear-gradient(to bottom left, #4ecdc4 1%, #556370);
+}
+
+.botaoMenu i {
+  margin-right: 1rem !important;
+}
+
+footer {
+  color: var(--gray-100);
+  display: flex;
+  justify-content: center;
+  padding: 1rem !important;
+}
