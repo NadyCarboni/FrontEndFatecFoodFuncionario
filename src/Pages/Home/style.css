@@ -42,28 +42,40 @@ h2 {
 .gerenciamento-row {
   display: grid;
 
-  grid-template-columns: 1fr 1fr 1fr;
+place-content: center;
+  grid-template-columns: 22% 22% 22%;
   margin: 3rem 3rem !important;
-  grid-gap: 3rem;
+  grid-gap: 5rem;
 }
 .botaoMenu {
-  border-radius: 30px;
+  border-radius: 60px;
   color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 10rem;
+  height: 15rem;
   filter: drop-shadow(5px 6px 30px rgba(0, 0, 0, 25%));
   cursor: pointer;
   transition: 0.5s;
+  
+  
+}
+
+.botaoMenu .inside {
+  display: flex;
+  align-items: center;
+  justify-content: center;margin: 3rem!important  ;
 }
 .botaoMenu:hover {
   opacity: 0.8;
 }
 .botao {
+  
+  margin: 1rem!important;
   border-radius: 30px;
-
-  font-size: 1.7rem;
+ 
+  font-size: 2rem;
+  
 }
 .categoria {
   background: linear-gradient(to bottom right, #7ccb85, #4ca2cd);
@@ -81,9 +93,32 @@ h2 {
   background: linear-gradient(to bottom left, #4ecdc4 1%, #556370);
 }
 
-.botaoMenu i {
-  margin-right: 1rem !important;
+.filaPedidos {
+  color: var(--gray-200);
+ 
 }
+
+.botoesComanda button {
+  height: 4rem;
+  background-color: var(--gray-100);
+  border-radius: 30px;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.5s;
+  
+}
+
+.botoesComanda button:hover {
+  opacity: 0.8;
+}
+
+.botoesComanda button:nth-child(2) {
+  margin: 0.5rem 0!important;
+}
+
+
+
 
 footer {
   color: var(--gray-100);

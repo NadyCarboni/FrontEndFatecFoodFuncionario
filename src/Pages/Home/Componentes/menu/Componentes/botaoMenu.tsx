@@ -15,8 +15,10 @@ export default function BotaoMenu({ tipo, texto, icon }: IProps) {
         console.log(tipo);
       }}
     >
-      <i className={`fa-2x ${icon}`} />
-      <div className="botao">{texto}</div>
+      <div className="inside">
+        <i className={`fa-3x ${icon}`} />
+        <div className="botao">{texto}</div>
+      </div>
     </button>
   );
 }
