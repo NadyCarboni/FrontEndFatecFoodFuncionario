@@ -1,0 +1,83 @@
+.header-row {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 5rem 1fr 1fr;
+  color: var(--gray-200);
+  align-items: center !important;
+}
+
+.input-box {
+  margin-right: 3rem !important;
+}
+
+.categoriaItem {
+  border: 1px solid var(--gray-50);
+  border-radius: 10px;
+
+  margin: 1rem 2rem !important;
+}
+
+.categoriaItem .detail {
+  display: grid;
+  grid-template-columns: 5rem 2fr 4rem;
+  align-items: center;
+  color: var(--gray-200);
+}
+
+.categoriaItem .icon i {
+  background-color: var(--gray-0);
+  color: var(--gray-50);
+  padding: 0.5rem !important;
+  border-radius: 5px;
+  margin: 1rem !important;
+  border: 1px solid var(--gray-50);
+}
+
+.titleGrad1 {
+  background: linear-gradient(to bottom right, #de6161, #2657eb 130%);
+  color: #fff;
+}
+
+.nomeCategoria {
+  width: min-content;
+  color: #fff;
+  border-radius: 30px;
+  padding: 0.2rem 1rem !important;
+}
+
+.edit i {
+  background-color: var(--gray-50);
+  padding: 0.8rem !important;
+  border-radius: 50%;
+  color: #fff;
+  filter: drop-shadow(6px 5px 5px rgba(0, 0, 0, 5%));
+  cursor: pointer;
+}
+.ver {
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 0 0.2rem !important;
+}
+
+.novaDetail {
+  display: grid;
+  padding: 1rem !important;
+  grid-template-columns: 9rem 15rem;
+  color: var(--gray-200);
+}
+.novaCategoria {
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.novaCategoria:hover {
+  opacity: 0.5;
+}
+
+.adiconarButton {
+  color: #fff;
+  background-color: var(--gray-50);
+  width: fit-content;
+  border-radius: 30px;
+  padding: 0.2rem 0.7rem !important;
+}

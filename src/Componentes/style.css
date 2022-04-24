@@ -1,0 +1,79 @@
+.voltar {
+  height: 3rem;
+  cursor: pointer;
+  background-color: #fff;
+  margin: 0 1rem !important;
+  font-family: "Poppins" !important;
+}
+/* Input */
+input {
+  border: var(--gray-50) 1px solid;
+  border-radius: 30px;
+  height: 2rem;
+  color: var(--gray-200);
+  width: 100%;
+  padding-left: 1rem !important;
+  transition: 0.05s;
+}
+
+input:focus {
+  outline: none !important;
+  filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 5%));
+}
+input:focus ~ .submit-lente {
+  opacity: 1;
+}
+
+.inputSearchContainer {
+  position: relative;
+  width: 100%;
+}
+
+.submit-lente {
+  color: var(--gray-50);
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  z-index: 10;
+  border: none;
+  background: transparent;
+  outline: none;
+  opacity: 0.5;
+}
+
+.dialogBackground {
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100vw;
+  position: fixed;
+  display: flex;
+  justify-content: end;
+  align-items: flex-end;
+  background-color: rgba(0, 0, 0, 30%);
+}
+
+.dialogContainer {
+  background-color: #fff;
+  width: 90vw;
+  height: 90vh;
+  border-radius: 50px;
+  color: var(--gray-200);
+  top: 100%;
+  bottom: 0 !important;
+}
+
+.dialogContainer button {
+  background: none;
+}
+.dialogContainer button i {
+  color: var(--gray-200);
+  background-color: #fff;
+  padding: 0.7rem 1rem !important;
+  border-radius: 50%;
+  cursor: pointer;
+  filter: drop-shadow(5px 6px 30px rgba(0, 0, 0, 25%));
+}

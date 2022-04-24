@@ -1,8 +1,10 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import BotaoMenu from "./Componentes/botaoMenu";
 
 export default function Menu() {
+  const navigate = useNavigate();
   return (
     <div>
       <div className="gerenciamento-row">
@@ -10,16 +12,19 @@ export default function Menu() {
           tipo="categoria"
           texto="Gerenciar Categorias"
           icon="fa-solid fa-bars "
+          path="/categorias"
         />
         <BotaoMenu
           tipo="produtos"
           texto="Gerenciar Produtos"
           icon="fa-solid fa-cart-shopping"
+          path="/produtos"
         />
         <BotaoMenu
-          tipo="comandasAtivas"
+          tipo="adicionais"
           texto="Gerenciar adicionais"
           icon="fa-solid fa-plus"
+          path="/adicionais"
         />
         <div className="botoesComanda flex column justify-content-center">
           <button type="button">Gerar novo QR code</button>
@@ -30,6 +35,7 @@ export default function Menu() {
           tipo="filaPedidos"
           texto="Fila de pedidos"
           icon="fa-solid fa-plus"
+          path="/pedidos"
         />
       </div>
     </div>

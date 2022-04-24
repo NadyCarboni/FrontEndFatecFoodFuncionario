@@ -9,7 +9,7 @@ export default function AppRoutes() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/categoria" element={<Categoria />} />
+        <Route path="/categorias" element={<Categoria />} />
       </Routes>
     </Router>
   );

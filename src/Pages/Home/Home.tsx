@@ -8,7 +8,7 @@ import "./style.css";
 function Home() {
   return (
     <div>
-      <div className="container full-page">
+      <div className="container ">
         <div className="main mx-5">
           <Header />
           <Menu />

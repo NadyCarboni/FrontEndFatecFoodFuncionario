@@ -1,14 +1,13 @@
 import React from "react";
 import { BsArrowReturnLeft } from "react-icons/bs";
 
+import BtnVoltar from "../../../Componentes/btnVoltar";
+
 export default function Header() {
   return (
     <div className="flex column header pt-3">
       <div className="flex first-row">
-        <div className="flex column align-itens-center p-2 voltar">
-          <BsArrowReturnLeft />
-          <p className="small">Voltar</p>
-        </div>
+        <BtnVoltar />
         <div className="flex welcome justify-content-center pt-5">
           <h2>Seja bem-vindo.</h2>
         </div>
