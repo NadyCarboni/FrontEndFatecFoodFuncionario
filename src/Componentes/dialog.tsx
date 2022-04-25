@@ -11,6 +11,7 @@ export default function Dialog({ closeDialog, title, body }: IProps) {
     <div className="dialogBackground">
       <div className="dialogContainer">
         <button
+          className="dialogButton"
           type="button"
           onClick={() => {
             closeDialog(false);
@@ -18,10 +19,12 @@ export default function Dialog({ closeDialog, title, body }: IProps) {
         >
           <i className="fa-solid fa-xmark fa-2x" />
         </button>
-        <div className="dialogTitle">
-          <h2>{title}</h2>
+        <div className="dialogDetail">
+          <div className="dialogTitle mb-3">
+            <h2>{title}</h2>
+          </div>
+          <div className="dialogBody">{body}</div>
         </div>
-        <div className="dialogBody">{body}</div>
       </div>
     </div>
   );

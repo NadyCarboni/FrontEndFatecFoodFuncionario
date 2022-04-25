@@ -6,7 +6,7 @@
   font-family: "Poppins" !important;
 }
 /* Input */
-input {
+.inputSearchContainer input {
   border: var(--gray-50) 1px solid;
   border-radius: 30px;
   height: 2rem;
@@ -16,11 +16,11 @@ input {
   transition: 0.05s;
 }
 
-input:focus {
+.inputSearchContainer input:focus {
   outline: none !important;
   filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 5%));
 }
-input:focus ~ .submit-lente {
+.inputSearchContainer input:focus ~ .submit-lente {
   opacity: 1;
 }
 
@@ -69,11 +69,65 @@ input:focus ~ .submit-lente {
 .dialogContainer button {
   background: none;
 }
-.dialogContainer button i {
+.dialogContainer .dialogButton i {
   color: var(--gray-200);
   background-color: #fff;
   padding: 0.7rem 1rem !important;
   border-radius: 50%;
   cursor: pointer;
   filter: drop-shadow(5px 6px 30px rgba(0, 0, 0, 25%));
+}
+
+.dialogDetail {
+  padding: 1rem 3rem !important;
+}
+
+.inputDefaultContainer {
+  position: relative;
+  width: 100%;
+}
+
+.inputDefaultContainer input {
+  border-bottom: var(--gray-50) 1px solid;
+  background-color: #f9f9f9;
+  height: 2rem;
+
+  color: var(--gray-200);
+  width: 100%;
+  padding-left: 1rem !important;
+  transition: 0.05s;
+}
+
+.inputDefaultContainer input:focus {
+  outline: none !important;
+  border-bottom: #7ccb85 solid 2px;
+}
+
+/* .inputDefaultContainer label {
+  margin-top: 3rem !important;
+} */
+.pick {
+  height: 15rem;
+  overflow: scroll;
+}
+
+/* .pick i {
+  margin: 0.5rem !important;
+} */
+
+.iconPickerButton {
+  cursor: pointer;
+  color: var(--gray-200);
+}
+.saveBtn {
+  width: 100%;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 2rem 0rem !important;
+  height: 2rem;
+  transition: 0.5s;
+}
+
+.saveBtn:hover {
+  opacity: 0.8;
 }
