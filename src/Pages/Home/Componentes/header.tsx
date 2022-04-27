@@ -1,5 +1,4 @@
 import React from "react";
-import { BsArrowReturnLeft } from "react-icons/bs";
 
 import BtnVoltar from "../../../Componentes/btnVoltar";
 

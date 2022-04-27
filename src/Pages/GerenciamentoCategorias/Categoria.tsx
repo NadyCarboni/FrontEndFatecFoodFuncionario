@@ -1,15 +1,22 @@
-import React from "react";
-import { BsArrowReturnLeft } from "react-icons/bs";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+import api from "../../services/api";
 import CategoriaItem from "./Componentes/categoria";
 import Header from "./Componentes/header";
 import NovaCategoria from "./Componentes/novaCategoria";
-
 import "./style.css";
 
 export default function Categoria() {
   const navigate = useNavigate();
+  const getCategorias = async () => {
+    const response = await api.get("/Categoria");
+    console.log(response);
+  };
+
+  useEffect(() => {
+    getCategorias();
+  }, []);
   return (
     <div>
       <div className="container ">
