@@ -1,21 +1,51 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/require-default-props */
 import React from "react";
+import { useForm, Controller } from "react-hook-form";
 
 interface IProps {
   name: string;
   value?: string;
   label: string;
+  placeholder?: string;
+  register?: any;
+  errors?: any;
 }
-export default function Input({ name, label, value }: IProps) {
+export default function Input({
+  name,
+  label,
+  value,
+  placeholder,
+  register,
+  errors,
+  ...props
+}: IProps) {
+  const { control } = useForm();
+
   return (
     <div className="inputDefaultContainer ">
       <label htmlFor={name}>{label}</label>
+
+      {/* <input
+        type="text"
+        // name={name}
+        className="poppins my-2"
+        style={{ fontFamily: "Poppins" }}
+        placeholder={placeholder}
+        value={value}
+      
+      /> */}
+
       <input
         type="text"
-        name={name}
+        // ref={register}
+
+        // name={name}
         className="poppins my-2"
-        placeholder="Nome da Categoria..."
+        style={{ fontFamily: "Poppins" }}
+        placeholder={placeholder}
         value={value}
+        {...props}
       />
     </div>
   );

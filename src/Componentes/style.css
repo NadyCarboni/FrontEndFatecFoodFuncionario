@@ -2,13 +2,32 @@
   height: 3rem;
   cursor: pointer;
   background-color: #fff;
+  background-color: #282828; /* novo */
+  color: #fff; /* novo */
   margin: 0 1rem !important;
   font-family: "Poppins" !important;
+  transition: 0.5s;
 }
+
+.voltar:hover {
+  color: #ff3364;
+}
+
+.header-row {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 5rem 1fr 1fr;
+  color: var(--gray-200);
+  color: #fff; /* novo */
+  align-items: center !important;
+}
+
 /* Input */
 .inputSearchContainer input {
-  border: var(--gray-50) 1px solid;
+  /* border: var(--gray-50) 1px solid; */ /* novo */
+  filter: drop-shadow(7px 6px 6px rgba(0, 0, 0, 25%)); /* novo */
   border-radius: 30px;
+  border-radius: 13px; /* novo */
   height: 2rem;
   color: var(--gray-200);
   width: 100%;
@@ -31,6 +50,7 @@
 
 .submit-lente {
   color: var(--gray-50);
+  color: #ff3364; /* novo */
   cursor: pointer;
   position: absolute;
   top: 50%;
@@ -40,7 +60,7 @@
   border: none;
   background: transparent;
   outline: none;
-  opacity: 0.5;
+  /* opacity: 0.5;  */ /* novo */
 }
 
 .dialogBackground {
@@ -52,18 +72,22 @@
   position: fixed;
   display: flex;
   justify-content: end;
+  justify-content: center; /* novo */
   align-items: flex-end;
-  background-color: rgba(0, 0, 0, 30%);
+  align-items: center; /* novo */
+  background-color: rgba(0, 0, 0, 80%);
 }
 
 .dialogContainer {
   background-color: #fff;
-  width: 90vw;
-  height: 90vh;
+  background-color: #282828; /* novo */
+
+  width: 80vw;
+  height: 80vh;
   border-radius: 50px;
   color: var(--gray-200);
-  top: 100%;
-  bottom: 0 !important;
+  color: #fff; /* novo */
+  /* top: 100%; */
 }
 
 .dialogContainer button {
@@ -72,6 +96,9 @@
 .dialogContainer .dialogButton i {
   color: var(--gray-200);
   background-color: #fff;
+  background-color: #3e3e3e; /* novo */
+  color: #fff; /* novo */
+
   padding: 0.7rem 1rem !important;
   border-radius: 50%;
   cursor: pointer;
@@ -87,8 +114,24 @@
   width: 100%;
 }
 
-.inputDefaultContainer input {
-  border-bottom: var(--gray-50) 1px solid;
+/* .inputDefaultContainer Multiselect select {
+  border: none;
+} */
+.searchWrapper {
+  border: none !important;
+  font-family: poppins !important;
+  border-radius: 0px;
+}
+
+.inputDefaultContainer input,
+.inputDefaultContainer textarea,
+.inputDefaultContainer select,
+.inputDefaultContainer select option,
+#search_input,
+.searchBox {
+  border-radius: 7px; /* novo */
+  filter: drop-shadow(7px 6px 6px rgba(0, 0, 0, 25%));
+  /* border-bottom: var(--gray-50) 1px solid; */ /* novo */
   background-color: #f9f9f9;
   height: 2rem;
 
@@ -96,18 +139,75 @@
   width: 100%;
   padding-left: 1rem !important;
   transition: 0.05s;
+  font-family: "POPPINS";
+}
+.optionContainer li {
+  height: 2rem;
+  display: flex;
+  padding-left: 1rem !important;
+  font-size: 0.9rem;
+  font-family: "POPPINS";
+  align-items: center;
+}
+/* .highlightOption {
+  background: #f9f9f9 !important;
+  color: #fff;
+} */
+/* .search-wrapper {
+  display: flex;
+  flex-direction: column-reverse;
+} */
+.notFound {
+  font-family: "POPPINS" !important;
+  font-size: 0.8rem;
+  height: 2rem;
+  display: flex !important;
+  align-items: center;
+  padding-left: 1rem !important;
+}
+.chip {
+  width: fit-content;
+  padding: 4px 10px;
+  /* background: linear-gradient(to bottom right, #7ccb85, #4ca2cd) !important;  */ /* novo */
+  background-color: #ff3364 !important;
+  padding: 0.2rem 0.5rem !important;
+  color: #fff;
+  margin-right: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+  border-radius: 11px;
+  display: inline-flex;
+  align-items: center;
+  font-size: 13px;
+  line-height: 19px;
+  color: #fff;
+}
+.inputDefaultContainer textarea {
+  height: 10rem;
+  padding-top: 1rem !important ;
+}
+.icon_cancel {
+  margin-left: 0.2rem !important;
 }
 
-.inputDefaultContainer input:focus {
+.inputDefaultContainer input:focus,
+.inputDefaultContainer textarea:focus,
+.inputDefaultContainer select:focus {
   outline: none !important;
   border-bottom: #7ccb85 solid 2px;
+  border-bottom: #ff3364 solid 2px; /* novo */
 }
+/* .placeholder {
+  color: #666 !important;
+}
+
+.inputDefaultContainer select option {
+} */
 
 /* .inputDefaultContainer label {
   margin-top: 3rem !important;
 } */
 .pick {
-  height: 15rem;
+  height: 7rem;
   overflow: scroll;
 }
 
@@ -118,6 +218,11 @@
 .iconPickerButton {
   cursor: pointer;
   color: var(--gray-200);
+
+  color: #fff; /* novo */
+  background-color: #3e3e3e !important; /* novo */
+  margin: 0.2rem !important;
+  border-radius: 13px;
 }
 .saveBtn {
   width: 100%;
@@ -126,8 +231,17 @@
   margin: 2rem 0rem !important;
   height: 2rem;
   transition: 0.5s;
+  background-color: #ff3364 !important; /* novo */
 }
 
 .saveBtn:hover {
   opacity: 0.8;
 }
+/* 
+input[type="file"]::file-selector-button {
+  height: 6rem;
+  width: 6rem;
+
+  border-radius: 0.2em;
+  font-family: "Poppins";
+} */
