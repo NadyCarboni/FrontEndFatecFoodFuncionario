@@ -26,21 +26,8 @@ export default function Input({
     <div className="inputDefaultContainer ">
       <label htmlFor={name}>{label}</label>
 
-      {/* <input
-        type="text"
-        // name={name}
-        className="poppins my-2"
-        style={{ fontFamily: "Poppins" }}
-        placeholder={placeholder}
-        value={value}
-      
-      /> */}
-
       <input
         type="text"
-        // ref={register}
-
-        // name={name}
         className="poppins my-2"
         style={{ fontFamily: "Poppins" }}
         placeholder={placeholder}

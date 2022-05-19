@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import Login from "../Login/Login";
 
 import Header from "./Componentes/header";
 import Menu from "./Componentes/menu/menu";
@@ -6,6 +7,10 @@ import Menu from "./Componentes/menu/menu";
 import "./style.css";
 
 function Home() {
+  const [isLogin, setIsLogin] = useState<boolean>(false);
+
+  if (!isLogin) return <Login />;
+
   return (
     <div>
       <div className="container ">
