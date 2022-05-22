@@ -1,0 +1,13 @@
+/* Arquivo de reset do css */
+* {
+  padding: 0 !important;
+  margin: 0 !important;
+  vertical-align: baseline;
+  list-style: none;
+  border: 0;
+}
+body,
+html {
+  width: 100vw;
+  height: 100vh;
+}

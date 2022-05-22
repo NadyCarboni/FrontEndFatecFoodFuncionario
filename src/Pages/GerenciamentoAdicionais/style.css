@@ -1,0 +1,14 @@
+.lista {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 4rem;
+  margin: 2rem !important;
+}
+.adicional {
+  background-color: #3e3e3e;
+  border-radius: 13px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}

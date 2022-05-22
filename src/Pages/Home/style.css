@@ -1,0 +1,180 @@
+h2 {
+  font-size: 3rem;
+}
+
+.voltar {
+  border-radius: 30px;
+}
+
+.first-row {
+  color: var(--gray-200);
+}
+
+.welcome {
+  color: #fff; /* novo */
+  flex-grow: 1;
+  margin-bottom: 2rem !important; /* novo */
+}
+
+.container {
+  background-color: var(--gray-0);
+  background-color: #282828; /* novo */
+
+  padding: 5rem;
+  min-height: 100vh;
+}
+
+.main {
+  background-color: #fff;
+  background-color: #282828; /* novo */
+}
+
+.photo img {
+  width: 10rem;
+  border-radius: 5px;
+  height: auto;
+}
+
+.name {
+  font-size: 1.5rem;
+  color: var(--gray-100);
+  color: #fff; /* novo */
+}
+
+.id {
+  background: linear-gradient(#c153f5, #b254df);
+  background: #ff3364; /* novo */
+  padding: 0.2rem 0.5rem !important;
+  border-radius: 30px;
+  color: #fff;
+}
+.gerenciamento-row {
+  display: grid;
+
+  place-content: center;
+  grid-template-columns: 24% 24% 24%;
+  margin: 3rem 3rem !important;
+  grid-gap: 5rem;
+  padding-bottom: 3rem !important;
+}
+.botaoMenu {
+  border-radius: 60px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 15rem;
+  filter: drop-shadow(5px 6px 30px rgba(0, 0, 0, 25%));
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.botaoMenu .inside {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 3rem !important  ;
+}
+.botaoMenu:hover {
+  opacity: 0.8;
+}
+.botao {
+  margin: 1rem !important;
+  border-radius: 30px;
+
+  font-size: 2rem;
+}
+.categoria {
+  background: linear-gradient(to bottom right, #7ccb85, #4ca2cd);
+  background: #ff3364; /* novo */
+}
+
+.produtos {
+  background: linear-gradient(to bottom right, #de6161, #2657eb 120%);
+  background: #ff3364; /* novo */
+}
+
+.adicionais {
+  background: linear-gradient(to bottom right, #3b4371 40%, #f3904f 120%);
+  background: #ff3364; /* novo */
+}
+
+.novaComanda {
+  background: linear-gradient(to bottom left, #4ecdc4 1%, #556370);
+  background: #ff3364; /* novo */
+}
+
+.filaPedidos {
+  color: var(--gray-200);
+  color: #fff; /* novo */
+  background: #ff3364; /* novo */
+}
+
+.botoesComanda button {
+  height: 4rem;
+  background-color: var(--gray-100);
+  background-color: #3e3e3e; /* novo */
+  border-radius: 30px;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.botoesComanda button:hover {
+  opacity: 0.8;
+}
+
+.botoesComanda button:nth-child(2) {
+  margin: 0.5rem 0 !important;
+}
+
+footer {
+  color: var(--gray-100);
+  display: flex;
+  justify-content: center;
+  padding: 1rem !important;
+}
+.qrcode {
+  background-color: #3e3e3e !important;
+  padding: 1rem 2rem !important;
+  border-radius: 13px;
+}
+
+.qrcode img {
+  width: 10rem;
+  border-radius: 13px;
+}
+
+.comanda {
+  font-family: "POPPINS";
+  color: #fff;
+  font-size: 0.7rem;
+}
+
+.toPrint {
+  transform: translate(50%);
+  width: 50%;
+  height: 25rem;
+  background-color: #fff;
+  border-radius: 13px;
+  font-family: "POPPINS" !important;
+  color: #282828;
+}
+
+.toPrint img {
+  width: 15rem;
+}
+.print {
+  cursor: pointer;
+}
+
+.logout-button {
+  background: transparent;
+  color: white;
+  display: flex;
+}
+
+.logout-icon {
+  font-size: 30px;
+}

@@ -1,0 +1,126 @@
+.precoNome {
+  display: grid;
+  grid-template-columns: 8fr 2fr;
+  grid-gap: 0.5rem;
+}
+
+.novoProdutoDialogBody {
+  overflow-y: scroll;
+  max-height: 55vh;
+}
+
+/* .produto {
+  margin: 1rem 2rem !important;
+  width: 10rem;
+} */
+
+.listaProdutos {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 4rem;
+  margin: 2rem !important;
+}
+.produto {
+  background-color: #3e3e3e; /* novo */
+  filter: drop-shadow(7px 6px 6px rgba(0, 0, 0, 25%));
+  position: relative;
+  border-radius: 25px; /* novo */
+  padding-bottom: 1rem !important; /* novo */
+}
+
+.produto img {
+  max-width: 100%;
+  width: 100%;
+  object-fit: cover;
+  /* max-height: max(6rem, 30vh); */
+  aspect-ratio: 2/2;
+  overflow-y: hidden;
+  border-radius: 25px 25px 0 0; /* novo */
+}
+
+.bigButton {
+  /* position: absolute; */
+  bottom: 4rem;
+  left: 50%;
+  display: flex;
+  border-radius: 15px;
+  /* justify-content: center !important; */
+  width: 100%;
+  /* margin: 1rem 0.5rem !important; */
+  /* transform: translateX(-50%); */
+  transition: 0.5s;
+  font-size: 1rem;
+  /* text-align: center; */
+  padding: 0.5rem !important;
+}
+.bigButton:hover {
+  opacity: 0.9;
+}
+.nome {
+  color: var(--gray-200) !important;
+  color: #fff !important; /* novo */
+  font-family: "Poppins";
+  display: flex;
+  text-align: center;
+
+  /* margin-right: 0.5rem !important; */
+}
+
+.detailFoto {
+  width: 15rem;
+}
+.divider {
+  margin-top: 2rem !important;
+  border-top: 1px solid var(--gray-50);
+}
+.detailFoto img {
+  max-width: 100%;
+  width: 100%;
+  object-fit: cover;
+  /* max-height: max(6rem, 30vh); */
+  aspect-ratio: 2/2;
+  overflow-y: hidden;
+  border-radius: 15px 15px 15px 15px;
+}
+
+.editProduto {
+  color: var(--gray-100);
+  color: #fff; /* novo */
+
+  border-radius: 50%;
+  padding-left: 0.5rem !important;
+}
+.editProduto:hover {
+  cursor: pointer;
+}
+.imagemAtual {
+  width: 5rem;
+
+  margin-bottom: 0.5rem !important;
+}
+
+.imagemAtual img {
+  max-width: 100%;
+  width: 100%;
+  object-fit: cover;
+  /* max-height: max(6rem, 30vh); */
+  aspect-ratio: 2/2;
+  overflow-y: hidden;
+  border-radius: 15px 15px 15px 15px;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.fileInput {
+  cursor: pointer;
+}
+.inputFileDiv {
+  margin-bottom: 1rem !important;
+}
+
+.desativado {
+  -webkit-filter: grayscale(100%) !important;
+  filter: grayscale(100%) !important;
+}
