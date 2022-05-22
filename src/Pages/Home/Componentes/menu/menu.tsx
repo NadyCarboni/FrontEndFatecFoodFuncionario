@@ -30,55 +30,58 @@ export default function Menu() {
   };
 
   const toPrint = (
-    <div className="toPrint">
-      <div id="toPrint">
-        <div className="poppins px-5 pt-5">
-          {" "}
-          <div className="text-center">
-            <p className="poppins" id="printTitle">
-              FATEC FOOD
-            </p>
-            <p className="poppins" id="decor">
-              ------------
-            </p>
+    <div className="toPrintWrapper">
+      <div className="toPrint">
+        <div id="toPrint">
+          <div className="poppins px-5 pt-5">
+            {" "}
+            <div className="text-center">
+              <p className="poppins" id="printTitle">
+                FATEC FOOD
+              </p>
+              <p className="poppins" id="decor">
+                ------------
+              </p>
 
-            <img src={qrcode} alt="" id="qrcode" />
-            <p className="pb-5">NÚMERO DA COMANDA: {codComanda}</p>
+              <img src={qrcode} alt="" id="qrcode" />
+              <p className="pb-5">NÚMERO DA COMANDA: {codComanda}</p>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="text-center">
-        <button
-          type="button"
-          className="titleGrad1 poppins p-5 print  "
-          onClick={() => {
-            const printContents = document.getElementById("toPrint")!.innerHTML;
-            const originalContents = document.body.innerHTML;
+        <div className="text-center">
+          <button
+            type="button"
+            className="titleGrad1 poppins p-5 print  "
+            onClick={() => {
+              const printContents =
+                document.getElementById("toPrint")!.innerHTML;
+              const originalContents = document.body.innerHTML;
 
-            document.body.innerHTML = printContents;
-            const body = document.getElementsByTagName("html")[0];
+              document.body.innerHTML = printContents;
+              const body = document.getElementsByTagName("html")[0];
 
-            const decor = document.getElementById("decor");
+              const decor = document.getElementById("decor");
 
-            body.style.maxWidth = "58mm";
-            body.style.maxHeight = "5cm";
+              body.style.maxWidth = "58mm";
+              body.style.maxHeight = "5cm";
 
-            body.style.fontSize = "8px";
-            const qrcodeImg = document.getElementById("qrcode");
-            qrcodeImg!.style.maxWidth = "10rem";
+              body.style.fontSize = "8px";
+              const qrcodeImg = document.getElementById("qrcode");
+              qrcodeImg!.style.maxWidth = "10rem";
 
-            decor!.style.display = "none";
-            window.print();
+              decor!.style.display = "none";
+              window.print();
 
-            document.body.innerHTML = originalContents;
-            document.location.reload();
-          }}
-        >
-          <div className="flex column poppins">
-            <i className="fa-solid fa-print fa-2x" />
-            imprimir
-          </div>
-        </button>
+              document.body.innerHTML = originalContents;
+              document.location.reload();
+            }}
+          >
+            <div className="flex column poppins">
+              <i className="fa-solid fa-print fa-2x" />
+              imprimir
+            </div>
+          </button>
+        </div>
       </div>
     </div>
   );

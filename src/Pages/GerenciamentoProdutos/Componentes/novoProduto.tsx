@@ -56,24 +56,27 @@ export default function NovoProduto({ setGetProduto }: IProps) {
   };
   console.log(errors);
   const postData = async (data: any) => {
-    console.log(data);
-
-    console.log(selected, image);
-    const newData = {
-      nome: data.nomeProduto,
-      preco: parseFloat(data.precoProduto.toString().replace(",", ".")),
-      categoriaId: data.categoriaSelect,
-      ativo: check,
-      imagem: image,
-      porcao: data.qtdePessoasProduto,
-      descricao: data.descricaoProduto,
-    };
-    console.log(newData);
-    const response = await api.post("/Produto", newData);
-    console.log(response);
-    reset();
-    setImage(undefined);
-    setGetProduto();
+    try {
+      console.log(data);
+      console.log(selected, image);
+      const newData = {
+        nome: data.nomeProduto,
+        preco: parseFloat(data.precoProduto.toString().replace(",", ".")),
+        categoriaId: data.categoriaSelect,
+        ativo: check,
+        imagem: image,
+        porcao: data.qtdePessoasProduto,
+        descricao: data.descricaoProduto,
+      };
+      console.log(newData);
+      const response = await api.post("/Produto", newData);
+      console.log(response);
+      reset();
+      setImage(undefined);
+      setGetProduto();
+    } catch (err: any) {
+      console.log(err);
+    }
   };
   const getCategorias = async () => {
     const response = await api.get("/Categoria");

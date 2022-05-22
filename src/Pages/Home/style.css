@@ -155,7 +155,8 @@ footer {
 .toPrint {
   transform: translate(50%);
   width: 50%;
-  height: 25rem;
+  height: 20rem;
+
   background-color: #fff;
   border-radius: 13px;
   font-family: "POPPINS" !important;
@@ -163,7 +164,7 @@ footer {
 }
 
 .toPrint img {
-  width: 15rem;
+  width: 10rem;
 }
 .print {
   cursor: pointer;
@@ -177,4 +178,9 @@ footer {
 
 .logout-icon {
   font-size: 30px;
+}
+
+.toPrintWrapper {
+  overflow-y: scroll;
+  height: 60vh;
 }
