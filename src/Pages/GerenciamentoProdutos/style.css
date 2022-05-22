@@ -1,6 +1,6 @@
-.precoNome {
+.precoNomeQtde {
   display: grid;
-  grid-template-columns: 8fr 2fr;
+  grid-template-columns: 8fr 2fr 3fr;
   grid-gap: 0.5rem;
 }
 
@@ -123,4 +123,7 @@ input[type="file"] {
 .desativado {
   -webkit-filter: grayscale(100%) !important;
   filter: grayscale(100%) !important;
+}
+p.pessoas {
+  margin-left: 1rem !important;
 }

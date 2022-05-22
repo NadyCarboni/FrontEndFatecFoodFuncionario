@@ -65,7 +65,7 @@ export default function NovoProduto({ setGetProduto }: IProps) {
       categoriaId: data.categoriaSelect,
       ativo: check,
       imagem: image,
-      porcao: 2,
+      porcao: data.qtdePessoasProduto,
       descricao: data.descricaoProduto,
     };
     console.log(newData);
@@ -123,15 +123,9 @@ export default function NovoProduto({ setGetProduto }: IProps) {
             }}
           />
         </div>
-        <div className=" precoNome">
+        <div className=" precoNomeQtde">
           <div className="input-box">
-            {/* <Input
-              name="nomeProduto"
-              label="Nome:"
-              placeholder="Nome do produto..."
-            /> */}
             <div className="inputDefaultContainer ">
-              {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
               <label htmlFor="nomeProduto">Nome: </label>
               <input
                 type="text"
@@ -146,10 +140,9 @@ export default function NovoProduto({ setGetProduto }: IProps) {
                 placeholder="Nome do produto..."
               />
             </div>
-          </div>{" "}
+          </div>
           <div className="input-box">
             <div className="inputDefaultContainer ">
-              {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
               <label htmlFor="precoProduto">Preço:</label>
               <input
                 type="text"
@@ -169,21 +162,36 @@ export default function NovoProduto({ setGetProduto }: IProps) {
                 placeholder="R$ 00,00"
               />
             </div>
-
-            {/* <Input
-              name="precoProduto"
-              label="Preço:"
-              register={register}
-              placeholder="R$ 00,00"
-            /> */}
-
-            {/* <Input name="nomeProduto" label="Preço" placeholder="R$ 00,00" /> */}
           </div>
-          {/* <Input name="categorias" label="Categorias" placeholder="R$ 00,00" /> */}
+          <div className="input-box">
+            <div className="inputDefaultContainer ">
+              <label htmlFor="qtdePessoasProduto">Serve:</label>
+              <div className="flex align-itens-center">
+                <input
+                  type="number"
+                  min="1"
+                  max="20"
+                  {...register("qtdePessoasProduto", {
+                    required:
+                      "Por favor insira quantas pessoas o produto serve",
+                    maxLength: 2,
+                  })}
+                  name="qtdePessoasProduto"
+                  className={
+                    errors.qtdePessoasProduto
+                      ? `poppins my-2 invalid`
+                      : `poppins my-2 `
+                  }
+                  style={{ fontFamily: "Poppins" }}
+                  placeholder="0"
+                />
+                <p className="pessoas">Pessoas</p>
+              </div>
+            </div>
+          </div>
         </div>
         <div className="flex align-itens-center input-box pt-2">
           <div className="inputDefaultContainer ">
-            {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
             <label htmlFor="descricaoProduto">Descrição </label>
             <textarea
               {...register("descricaoProduto", {
