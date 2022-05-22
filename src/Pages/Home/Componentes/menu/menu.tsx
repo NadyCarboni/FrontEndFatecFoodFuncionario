@@ -30,18 +30,20 @@ export default function Menu() {
   };
 
   const toPrint = (
-    <>
+    <div className="toPrint">
       <div id="toPrint">
         <div className="poppins px-5 pt-5">
           {" "}
           <div className="text-center">
-            <p className="poppins">FATEC FOOD</p>
-            <p className="poppins">
-              ----------------------------------------------
+            <p className="poppins" id="printTitle">
+              FATEC FOOD
+            </p>
+            <p className="poppins" id="decor">
+              ------------
             </p>
 
-            <img src={qrcode} alt="" />
-            <p className="pb-5">ID COMANDA: {codComanda}</p>
+            <img src={qrcode} alt="" id="qrcode" />
+            <p className="pb-5">NÚMERO DA COMANDA: {codComanda}</p>
           </div>
         </div>
       </div>
@@ -54,7 +56,18 @@ export default function Menu() {
             const originalContents = document.body.innerHTML;
 
             document.body.innerHTML = printContents;
+            const body = document.getElementsByTagName("html")[0];
 
+            const decor = document.getElementById("decor");
+
+            body.style.maxWidth = "58mm";
+            body.style.maxHeight = "5cm";
+
+            body.style.fontSize = "8px";
+            const qrcodeImg = document.getElementById("qrcode");
+            qrcodeImg!.style.maxWidth = "10rem";
+
+            decor!.style.display = "none";
             window.print();
 
             document.body.innerHTML = originalContents;
@@ -67,7 +80,7 @@ export default function Menu() {
           </div>
         </button>
       </div>
-    </>
+    </div>
   );
   const navigate = useNavigate();
   return (

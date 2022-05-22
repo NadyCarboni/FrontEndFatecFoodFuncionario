@@ -152,16 +152,17 @@ footer {
   font-size: 0.7rem;
 }
 
-#toPrint {
+.toPrint {
   transform: translate(50%);
   width: 50%;
+  height: 25rem;
   background-color: #fff;
   border-radius: 13px;
   font-family: "POPPINS" !important;
   color: #282828;
 }
 
-#toPrint img {
+.toPrint img {
   width: 15rem;
 }
 .print {

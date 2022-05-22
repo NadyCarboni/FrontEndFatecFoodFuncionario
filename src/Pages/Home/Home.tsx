@@ -7,7 +7,7 @@ import Menu from "./Componentes/menu/menu";
 import "./style.css";
 
 function Home() {
-  const [isLogin, setIsLogin] = useState<boolean>(false);
+  const [isLogin, setIsLogin] = useState<boolean>(true);
 
   // if (!isLogin) return <Login setIsLogin={(value) => setIsLogin(value)} />;
 
