@@ -1,4 +1,5 @@
 import React from "react";
+import { RiLogoutBoxLine } from "react-icons/ri";
 
 import BtnVoltar from "../../../Componentes/btnVoltar";
 
@@ -10,6 +11,16 @@ export default function Header() {
         <div className="flex welcome justify-content-center pt-5">
           <h2>Seja bem-vindo.</h2>
         </div>
+        <button
+          className="logout-button"
+          type="button"
+          onClick={() => {
+            localStorage.removeItem("isSigned");
+            window.location.reload();
+          }}
+        >
+          <RiLogoutBoxLine className="logout-icon" />
+        </button>
       </div>
       <div className="second-row flex justify-content-center align-itens-center">
         <div className="photo">

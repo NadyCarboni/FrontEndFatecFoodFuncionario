@@ -25,6 +25,13 @@
 
 .login-input {
   margin-right: 0 !important;
+  padding: 0.5rem 0.8rem !important;
+  width: 91% !important;
+  margin-left: 0 !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .login-button {
@@ -33,3 +40,20 @@
     background-color: #FF3364;
     color: white;
 }
+
+.inputDefaultContainer .p-0{
+  padding: 0.3rem 0.8rem !important;
+}
+
+.w-60 {
+  width: 60% !important;
+}
+
+.sign-image {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px !important;
+}
+

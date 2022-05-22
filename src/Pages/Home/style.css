@@ -167,3 +167,13 @@ footer {
 .print {
   cursor: pointer;
 }
+
+.logout-button {
+  background: transparent;
+  color: white;
+  display: flex;
+}
+
+.logout-icon {
+  font-size: 30px;
+}
