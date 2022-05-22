@@ -39,6 +39,7 @@ export default function Produtos() {
                   descricao={item.descricao}
                   categoriaId={item.categoriaId}
                   nome={item.nome}
+                  porcao={item.porcao}
                 />
               );
             })}

@@ -10,6 +10,7 @@ import SaveBtn from "../../../Componentes/saveBtn";
 import api from "../../../services/api";
 
 interface IProps {
+  porcao: number;
   img: string;
   preco: number;
   setGetProduto: any;
@@ -31,6 +32,7 @@ export default function ListaProdutos({
   ativo,
   categoriaId,
   setGetProduto,
+  porcao,
 }: IProps) {
   const [selected, setSelected] = useState(categoriaId);
   const [adicionalSelected, setAdicionalSelected] = useState(adicionais);
@@ -102,7 +104,7 @@ export default function ListaProdutos({
       categoriaId: dados.categoriaSelect,
       ativo: check,
       descricao: dados.descricaoProduto,
-      porcao: 2,
+      porcao: dados.qtdePessoasProduto,
       imagem: image || blob,
     };
 
@@ -174,15 +176,9 @@ export default function ListaProdutos({
             }}
           />
         </div>
-        <div className=" precoNome">
+        <div className=" precoNomeQtde">
           <div className="input-box">
-            {/* <Input
-          name="nomeProduto"
-          label="Nome:"
-          placeholder="Nome do produto..."
-        /> */}
             <div className="inputDefaultContainer ">
-              {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
               <label htmlFor="nomeProduto">Nome: </label>
               <input
                 defaultValue={nome}
@@ -199,10 +195,9 @@ export default function ListaProdutos({
                 // onChange={(e) => setNomeProduto(e.target.value)}
               />
             </div>
-          </div>{" "}
+          </div>
           <div className="input-box">
             <div className="inputDefaultContainer ">
-              {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
               <label htmlFor="precoProduto">Preço:</label>
               <input
                 type="text"
@@ -223,18 +218,35 @@ export default function ListaProdutos({
                 placeholder="R$ 00,00"
               />
             </div>
-
-            {/* <Input
-          name="precoProduto"
-          label="Preço:"
-          register={register}
-          placeholder="R$ 00,00"
-        /> */}
-
-            {/* <Input name="nomeProduto" label="Preço" placeholder="R$ 00,00" /> */}
           </div>
-          {/* <Input name="categorias" label="Categorias" placeholder="R$ 00,00" /> */}
+          <div className="input-box">
+            <div className="inputDefaultContainer ">
+              <label htmlFor="qtdePessoasProduto">Serve:</label>
+              <div className="flex align-itens-center">
+                <input
+                  type="number"
+                  min="1"
+                  max="20"
+                  {...register("qtdePessoasProduto", {
+                    required:
+                      "Por favor insira quantas pessoas o produto serve",
+                    maxLength: 2,
+                  })}
+                  name="qtdePessoasProduto"
+                  className={
+                    errors.qtdePessoasProduto
+                      ? `poppins my-2 invalid`
+                      : `poppins my-2 `
+                  }
+                  style={{ fontFamily: "Poppins" }}
+                  defaultValue={porcao}
+                />
+                <p className="pessoas">Pessoas</p>
+              </div>
+            </div>
+          </div>
         </div>
+
         <div className="flex align-itens-center input-box pt-2">
           <div className="inputDefaultContainer ">
             {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
