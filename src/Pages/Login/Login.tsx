@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from "react";
+import { AiOutlineLoading } from "react-icons/ai";
 
 import api from "../../services/api";
 import "./Login.css";
@@ -10,6 +11,7 @@ function Login() {
   const [password, setPassword] = useState<string>("");
   const [restaurant, setRestaurant] = useState<any>();
   const [error, setError] = useState<any>();
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const convertBase64 = (file: any) => {
     return new Promise((resolve, reject) => {
@@ -27,11 +29,14 @@ function Login() {
   };
 
   const getRestaurante = async () => {
+    setIsLoading(true);
     try {
       const response = await api.get("/Restaurante");
       if (response) setRestaurant(response.data.data);
+      setIsLoading(false);
     } catch (err) {
       setError(err);
+      setIsLoading(false);
     }
   };
 
@@ -40,15 +45,14 @@ function Login() {
   }, []);
 
   function Login() {
-    console.log("teste");
     if (restaurant?.[0].nome === name && restaurant?.[0].senha === password) {
-      console.log("Logado");
       localStorage.setItem("isSigned", "true");
       window.location.reload();
     }
   }
 
   const postRestaurante = async () => {
+    setIsLoading(true);
     const state = {
       login: "frango",
       senha: password,
@@ -58,10 +62,19 @@ function Login() {
 
     try {
       const response = await api.post(`/Restaurante`, state);
+      setIsLoading(false);
     } catch (err) {
       setError(err);
+      setIsLoading(false);
     }
   };
+
+  if (isLoading)
+    return (
+      <div className="loading-container">
+        <AiOutlineLoading className="loading-icon" />
+      </div>
+    );
 
   return (
     <div className="login">

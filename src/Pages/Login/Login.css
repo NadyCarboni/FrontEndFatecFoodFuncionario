@@ -36,9 +36,17 @@
 
 .login-button {
   padding: 0.8rem 2rem !important;
-    border-radius: 30px;
-    background-color: #FF3364;
-    color: white;
+  border-radius: 30px;
+  background-color: #FF3364;
+  color: white;
+  cursor: pointer;
+  transition: .3s linear all;
+}
+
+.login-button:hover {
+  background-color: transparent;
+  border: #FF3364 1px solid !important;
+  color: #FF3364;
 }
 
 .inputDefaultContainer .p-0{
@@ -55,5 +63,29 @@
   justify-content: center;
   align-items: center;
   margin-top: 20px !important;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  background-color: #282828;
+}
+
+.loading-icon {
+  color: #FF3364;
+  font-size: 100px;
+  animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 

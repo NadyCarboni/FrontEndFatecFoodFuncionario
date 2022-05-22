@@ -173,6 +173,12 @@ footer {
   background: transparent;
   color: white;
   display: flex;
+  cursor: pointer;
+  transition: .2s linear all;
+}
+
+.logout-button:hover {
+  color: #ff3364;
 }
 
 .logout-icon {
