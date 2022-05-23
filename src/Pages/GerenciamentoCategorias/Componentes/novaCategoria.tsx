@@ -33,7 +33,7 @@ export default function NovaCategoria({ setGetCategoria }: IProps) {
       nome: dados.nomeCategoria,
       ativo: check,
       imagem: icon,
-      restauranteId: 1,
+      restauranteId: JSON.parse(localStorage.getItem("restaurante")!),
     };
     const response = await api.post("/Categoria", newData);
     setGetCategoria();

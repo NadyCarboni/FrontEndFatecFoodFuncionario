@@ -48,6 +48,7 @@ function Login() {
   function Login() {
     if (restaurant?.[0].nome === name && restaurant?.[0].senha === password) {
       localStorage.setItem("isSigned", "true");
+      localStorage.setItem("restaurante", `${restaurant?.[0].id}`);
       window.location.reload();
     }
   }

@@ -58,7 +58,7 @@ export default function CategoriaItem({
     const newData = {
       nome: dados.nomeCategoria,
       ativo: check,
-      restauranteId: 3,
+      restauranteId: JSON.parse(localStorage.getItem("restaurante")!),
       imagem: icon,
       id,
     };

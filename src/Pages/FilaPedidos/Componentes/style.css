@@ -36,3 +36,10 @@
 li > span {
   border-radius: 5px;
 }
+.imprimir {
+  text-align: center;
+  width: 50%;
+  background-color: #fff;
+  border-radius: 13px;
+  color: #282828;
+}

@@ -9,9 +9,10 @@ export default function Menu() {
   const [qrcode, setQrcode] = useState("");
   const [codComanda, setCodComanda] = useState(0);
   const [openDialog, setOpenDialog] = useState(false);
+
   const gerarQrCode = async () => {
     const data = {
-      restauranteId: 1,
+      restauranteId: JSON.parse(localStorage.getItem("restaurante")!),
     };
     const response = await api.post("/Comanda", data);
 
