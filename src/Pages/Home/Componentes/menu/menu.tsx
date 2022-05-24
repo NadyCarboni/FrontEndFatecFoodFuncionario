@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Dialog from "../../../../Componentes/dialog";
@@ -9,7 +9,8 @@ export default function Menu() {
   const [qrcode, setQrcode] = useState("");
   const [codComanda, setCodComanda] = useState(0);
   const [openDialog, setOpenDialog] = useState(false);
-
+  const [openDialogTodasComandas, setOpenDialogTodasComandas] = useState(false);
+  const [comandasArray, setComandasArray] = useState<any>();
   const gerarQrCode = async () => {
     const data = {
       restauranteId: JSON.parse(localStorage.getItem("restaurante")!),
@@ -86,11 +87,33 @@ export default function Menu() {
       </div>
     </div>
   );
+  const getComandas = async () => {
+    const response = await api.get("/Comanda");
+    setComandasArray(response.data);
+  };
+  useEffect(() => {
+    getComandas();
+  }, []);
+  const comandas = (
+    <div>
+      {/* {comandasArray?.map((element: any) => {
+        return element.id;
+      })} */}
+    </div>
+  );
   const navigate = useNavigate();
+
   return (
     <div>
       {openDialog && (
         <Dialog closeDialog={setOpenDialog} body={toPrint} title="" />
+      )}
+      {openDialogTodasComandas && (
+        <Dialog
+          closeDialog={setOpenDialogTodasComandas}
+          body={comandas}
+          title=""
+        />
       )}
       <div className="gerenciamento-row">
         <BotaoMenu
@@ -115,7 +138,14 @@ export default function Menu() {
           <button type="button" onClick={() => gerarQrCode()}>
             Gerar novo QR code
           </button>
-          <button type="button">Exibir comandas</button>
+          <button
+            type="button"
+            onClick={() => {
+              setOpenDialogTodasComandas(true);
+            }}
+          >
+            Exibir comandas
+          </button>
           <button type="button">Exibir comanda por id</button>
         </div>
         <BotaoMenu
