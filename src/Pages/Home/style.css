@@ -175,7 +175,7 @@ footer {
   color: white;
   display: flex;
   cursor: pointer;
-  transition: .2s linear all;
+  transition: 0.2s linear all;
 }
 
 .logout-button:hover {
@@ -189,4 +189,38 @@ footer {
 .toPrintWrapper {
   overflow-y: scroll;
   height: 60vh;
+}
+
+.comandas {
+  overflow-y: scroll;
+  height: 50vh;
+}
+
+.comandaItem {
+  padding: 3rem !important;
+  background: #3e3e3e;
+  border-radius: 13px;
+}
+
+/* .pedidosComanda {
+  display: none;
+} */
+
+.numComanda {
+  background-color: #fff;
+  color: #3e3e3e;
+  margin-right: 0.5rem !important ;
+  border-radius: 30px;
+  padding: 0.5rem !important;
+}
+
+.verPedidos {
+  background-color: #ff3364 !important;
+}
+
+.pedidosComanda {
+  margin: 1rem 2rem !important;
+  background-color: #282828;
+  border-radius: 13px;
+  padding: 0.5rem !important;
 }

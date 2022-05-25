@@ -5,12 +5,35 @@ import Dialog from "../../../../Componentes/dialog";
 import api from "../../../../services/api";
 import BotaoMenu from "./Componentes/botaoMenu";
 
+// export IProps = {
+
+// }
+
 export default function Menu() {
   const [qrcode, setQrcode] = useState("");
   const [codComanda, setCodComanda] = useState(0);
   const [openDialog, setOpenDialog] = useState(false);
   const [openDialogTodasComandas, setOpenDialogTodasComandas] = useState(false);
   const [comandasArray, setComandasArray] = useState<any>();
+  const [pedidosOpen, setPedidosOpen] = useState(false);
+  const getComandas = async () => {
+    const response = await api.get("/Comanda");
+    console.log(response.data.data);
+    setComandasArray(response.data.data);
+  };
+  const getItemPedido = async (pedido: number) => {
+    const response = await api.get(`/Pedido?id=${pedido}`);
+    console.log(response);
+    return response.data.data;
+  };
+  const getDate = (data: any) => {
+    const dataFormatada = new Date(data).toLocaleDateString();
+    const horaFormatada = new Date(data).toLocaleTimeString();
+    return `${dataFormatada} - ${horaFormatada}`;
+  };
+  useEffect(() => {
+    getComandas();
+  }, []);
   const gerarQrCode = async () => {
     const data = {
       restauranteId: JSON.parse(localStorage.getItem("restaurante")!),
@@ -87,18 +110,44 @@ export default function Menu() {
       </div>
     </div>
   );
-  const getComandas = async () => {
-    const response = await api.get("/Comanda");
-    setComandasArray(response.data);
-  };
-  useEffect(() => {
-    getComandas();
-  }, []);
+
   const comandas = (
-    <div>
-      {/* {comandasArray?.map((element: any) => {
-        return element.id;
-      })} */}
+    <div className="comandas">
+      {comandasArray &&
+        comandasArray?.map((element: any) => {
+          return (
+            <div className="comandaItem m-3">
+              <span className="numComanda ">Comanda: {element.id}</span>
+              {!pedidosOpen ? (
+                <button
+                  type="button"
+                  onClick={() => setPedidosOpen(true)}
+                  className="ver titleGrad1 poppins small verPedidos "
+                >
+                  Ver pedidos
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => setPedidosOpen(false)}
+                  className="ver titleGrad1 poppins small verPedidos "
+                >
+                  Fechar
+                </button>
+              )}
+
+              {pedidosOpen &&
+                element.pedido.map((p: any) => {
+                  return (
+                    <div className="pedidosComanda">
+                      <div>{getDate(p.data)}</div>
+                      <div>{}</div>
+                    </div>
+                  );
+                })}
+            </div>
+          );
+        })}
     </div>
   );
   const navigate = useNavigate();

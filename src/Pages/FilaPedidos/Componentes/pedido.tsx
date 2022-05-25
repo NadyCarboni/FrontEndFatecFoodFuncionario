@@ -15,7 +15,8 @@ export default function Pedido({ comanda, data, id, itemSelecionado }: any) {
 
   const getDate = (data: any) => {
     const dataFormatada = new Date(data).toLocaleDateString();
-    return dataFormatada;
+    const horaFormatada = new Date(data).toLocaleTimeString();
+    return `${dataFormatada} - ${horaFormatada}`;
   };
   const getProdutos = async () => {
     const response = await api.get("/Produto");
