@@ -8,6 +8,7 @@ import "./Login.css";
 function Login() {
   const [image, setImage] = useState<string | undefined>();
   const [name, setName] = useState<string>("");
+  const [userName, setUserName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [restaurant, setRestaurant] = useState<any>([]);
   const [error, setError] = useState<any>();
@@ -46,7 +47,10 @@ function Login() {
   }, []);
 
   function Login() {
-    if (restaurant?.[0].nome === name && restaurant?.[0].senha === password) {
+    if (
+      restaurant?.[0].login === userName &&
+      restaurant?.[0].senha === password
+    ) {
       localStorage.setItem("isSigned", "true");
       localStorage.setItem("restaurante", `${restaurant?.[0].id}`);
       window.location.reload();
@@ -56,7 +60,7 @@ function Login() {
   const postRestaurante = async () => {
     setIsLoading(true);
     const state = {
-      login: "frango",
+      login: userName,
       senha: password,
       nome: name,
       imagem: image,
@@ -130,19 +134,38 @@ function Login() {
             className="inputDefaultContainer mb-3 w-60"
             style={{ width: "60% !important" }}
           >
-            <label htmlFor="name">Nome</label>
+            <label htmlFor="userName">User Name</label>
 
             <input
               type="text"
               className="poppins my-2 p-0"
               style={{ fontFamily: "Poppins" }}
-              placeholder="Digite o nome do restaurante..."
-              value={name}
+              placeholder="Digite o nome do usuário..."
+              value={userName}
               onChange={(e) => {
-                setName(e.target.value);
+                setUserName(e.target.value);
               }}
             />
           </div>
+          {!restaurant?.[0] && (
+            <div
+              className="inputDefaultContainer mb-3 w-60"
+              style={{ width: "60% !important" }}
+            >
+              <label htmlFor="name">Nome do restaurante</label>
+
+              <input
+                type="text"
+                className="poppins my-2 p-0"
+                style={{ fontFamily: "Poppins" }}
+                placeholder="Digite o nome do restaurante..."
+                value={name}
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+              />
+            </div>
+          )}
 
           <div className="inputDefaultContainer mb-3 w-60">
             <label htmlFor="password">Senha</label>
