@@ -7,6 +7,7 @@ import Categoria from "./Pages/GerenciamentoCategorias/Categoria";
 import Produtos from "./Pages/GerenciamentoProdutos/produtos";
 import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login/Login";
+import SearchComandId from "./Pages/SearchComandId/SearchComandId";
 
 function Private({ Item }: { Item: any }) {
   const [isSigned, setIsSigned] = useState<boolean>(false);
@@ -25,6 +26,7 @@ export default function AppRoutes() {
         <Route path="/produtos" element={<Private Item={Produtos} />} />
         <Route path="/pedidos" element={<Private Item={FilaPedidos} />} />
         <Route path="/adicionais" element={<Private Item={Adicionais} />} />
+        <Route path="/comandaId" element={<Private Item={SearchComandId} />} />
       </Routes>
     </Router>
   );

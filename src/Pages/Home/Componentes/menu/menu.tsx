@@ -17,6 +17,7 @@ export default function Menu() {
   const [comandasArray, setComandasArray] = useState<any>();
   const [pedidosOpen, setPedidosOpen] = useState(false);
   const [itemPedido, setItemPedido] = useState<any>();
+  const navigate = useNavigate();
   const getComandas = async () => {
     const response = await api.get("/Comanda");
     console.log(response.data.data);
@@ -157,11 +158,18 @@ export default function Menu() {
                   return <div className="pedidosComanda">{p.id}</div>;
                 })} */}
               {pedidosOpen && (
-                <div className="mt-3 pedido p-3">
+                <div className="mt-3 pedidoItem p-3">
                   <span className="num-pedido">Pedido n º 1</span>
                   <div className="selected">
-                    <div className="itensSelecionados">Item:</div>
-                    <div className="adicionaisSelecionados">Adicionais:</div>
+                    <div className="itensSelecionados my-1">
+                      Item: Capuccino
+                    </div>
+                    <div className="adicionaisSelecionados my-1">
+                      Adicionais:
+                      <div className="ul">
+                        <li className="m-2"> - Açúcar</li>
+                      </div>
+                    </div>
                   </div>
                 </div>
               )}
@@ -170,7 +178,6 @@ export default function Menu() {
         })}
     </div>
   );
-  const navigate = useNavigate();
 
   return (
     <div>
@@ -215,7 +222,14 @@ export default function Menu() {
           >
             Exibir comandas
           </button>
-          <button type="button">Exibir comanda por id</button>
+          <button
+            type="button"
+            onClick={() => {
+              navigate("/comandaId");
+            }}
+          >
+            Exibir comanda por id
+          </button>
         </div>
         <BotaoMenu
           tipo="filaPedidos"

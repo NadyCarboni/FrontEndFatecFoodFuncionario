@@ -229,6 +229,7 @@ footer {
   color: #ff3364;
 }
 
-/* .pedido {
+.pedidoItem {
   background-color: #282828;
-} */
+  border-radius: 13px;
+}
