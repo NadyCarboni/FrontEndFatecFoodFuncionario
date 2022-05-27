@@ -25,6 +25,7 @@ export default function FilaPedidos() {
           </div>
           <div className="listaPedidos">
             {pedidos?.map((element: any) => {
+              console.log(element);
               return (
                 <Pedido
                   comanda={element.comandaId}

@@ -16,15 +16,19 @@ export default function Menu() {
   const [openDialogTodasComandas, setOpenDialogTodasComandas] = useState(false);
   const [comandasArray, setComandasArray] = useState<any>();
   const [pedidosOpen, setPedidosOpen] = useState(false);
+  const [itemPedido, setItemPedido] = useState<any>();
   const getComandas = async () => {
     const response = await api.get("/Comanda");
     console.log(response.data.data);
     setComandasArray(response.data.data);
   };
-  const getItemPedido = async (pedido: number) => {
-    const response = await api.get(`/Pedido?id=${pedido}`);
+  const deleteComanda = async (id: number) => {
+    const response = await api.delete(`/Comanda?id=${id}`);
     console.log(response);
-    return response.data.data;
+  };
+  const getPedido = async () => {
+    const response = await api.get("/Pedido");
+    setItemPedido(response.data.data);
   };
   const getDate = (data: any) => {
     const dataFormatada = new Date(data).toLocaleDateString();
@@ -33,6 +37,7 @@ export default function Menu() {
   };
   useEffect(() => {
     getComandas();
+    getPedido();
   }, []);
   const gerarQrCode = async () => {
     const data = {
@@ -118,6 +123,7 @@ export default function Menu() {
           return (
             <div className="comandaItem m-3">
               <span className="numComanda ">Comanda: {element.id}</span>
+
               {!pedidosOpen ? (
                 <button
                   type="button"
@@ -135,16 +141,30 @@ export default function Menu() {
                   Fechar
                 </button>
               )}
+              <button
+                type="button"
+                onClick={() => deleteComanda(element.id)}
+                className="ver titleGrad1 poppins small deletar mx-2"
+              >
+                Fechar comanda
+              </button>
 
-              {pedidosOpen &&
-                element.pedido.map((p: any) => {
-                  return (
-                    <div className="pedidosComanda">
-                      <div>{getDate(p.data)}</div>
-                      <div>{}</div>
-                    </div>
-                  );
-                })}
+              {/* {pedidosOpen &&
+                itemPedido.map((p: any) => {
+                  if (element.pedido.id === p.id) {
+                    console.log(p.id);
+                  }
+                  return <div className="pedidosComanda">{p.id}</div>;
+                })} */}
+              {pedidosOpen && (
+                <div className="mt-3 pedido p-3">
+                  <span className="num-pedido">Pedido n º 1</span>
+                  <div className="selected">
+                    <div className="itensSelecionados">Item:</div>
+                    <div className="adicionaisSelecionados">Adicionais:</div>
+                  </div>
+                </div>
+              )}
             </div>
           );
         })}

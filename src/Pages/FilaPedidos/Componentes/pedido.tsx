@@ -6,8 +6,15 @@ import { useForm } from "react-hook-form";
 import "./style.css";
 import Dialog from "../../../Componentes/dialog";
 import api from "../../../services/api";
+import Adicionais from "../../GerenciamentoAdicionais/adicionais";
 
-export default function Pedido({ comanda, data, id, itemSelecionado }: any) {
+export default function Pedido({
+  comanda,
+  data,
+  id,
+  itemSelecionado,
+  adicional,
+}: any) {
   const [produtos, setProdutos] = useState<any[]>();
   let nomeProduto = "";
   const nomeProdutoToPrint = "";
@@ -60,9 +67,15 @@ export default function Pedido({ comanda, data, id, itemSelecionado }: any) {
                     <b className="poppins">Quantidade: </b>
                     {element.quantidade}
                   </li>
+                  <li className="poppins">
+                    <b className="poppins">Adicionais: </b>
+                    {adicional?.map((e: any) => (
+                      <div>{e.nome}</div>
+                    ))}
+                  </li>
                 </>
               );
-            })}{" "}
+            })}
           </ul>
         </ul>
       </div>
