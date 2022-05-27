@@ -135,6 +135,9 @@ export default function ListaProdutos({
           <img src={`http://54.175.22.87${img}`} alt="" />
         </div>
         <div className="flex column px-4">
+          <button type="button" className="deletar poppins small">
+            Deletar produto
+          </button>
           <h2>{nome}</h2>
           <p className="my-2">Código: {id}</p>
           <p className="my-2">{descricao}</p>
