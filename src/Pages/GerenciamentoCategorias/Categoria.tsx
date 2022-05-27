@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import BtnVoltar from "../../Componentes/btnVoltar";
+import InputSearch from "../../Componentes/inputSearch";
 import api from "../../services/api";
 import CategoriaItem from "./Componentes/categoria";
 import Header from "./Componentes/header";
@@ -17,10 +19,16 @@ import "./style.css";
 // }
 export default function Categoria() {
   const [categorias, setCategorias] = useState<any[]>([]);
+  const [searchNome, setSearchNome] = useState<string>();
 
   const navigate = useNavigate();
   const getCategorias = async () => {
     const response = await api.get("/Categoria");
+    setCategorias(response.data.data);
+  };
+
+  const getCategoriasSearch = async () => {
+    const response = await api.get(`Categoria/Nome?nome=${searchNome}`);
     setCategorias(response.data.data);
   };
 
@@ -32,7 +40,34 @@ export default function Categoria() {
       <div className="container ">
         <div className="main mx-5">
           <div className="flex column  pt-3">
-            <Header />
+            <div className="header-row mb-4">
+              <BtnVoltar />
+              <div className="flex  ">
+                <h2 className="title font-weight-600 ">Gerenciar Categorias</h2>{" "}
+              </div>
+              <div className="flex align-itens-center input-box">
+                <div className="inputSearchContainer">
+                  <input
+                    type="text"
+                    placeholder="O que está procurando?"
+                    className="poppins"
+                    onChange={(e) => {
+                      setSearchNome(e.target.value);
+                    }}
+                    value={searchNome}
+                  />
+                  <button
+                    className="submit-lente"
+                    type="submit"
+                    onClick={() => {
+                      getCategoriasSearch();
+                    }}
+                  >
+                    <i className="fa fa-search" />
+                  </button>
+                </div>
+              </div>
+            </div>
             <div className="main">
               <NovaCategoria setGetCategoria={getCategorias} />
               {categorias.map((categoria) => {
