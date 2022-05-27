@@ -1,0 +1,26 @@
+.search-comand-id {
+  background-color: #282828;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow-x: hidden;
+}
+
+.search-comand-id__conteiner {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+}
+
+.search-comand-id__header {
+  width: 100%;
+  margin-top: 50px !important;
+  text-align: center;
+}
+
+.search-comand-id__title {
+  color: white;
+  margin-bottom: 50px !important;
+  font-size: 32px;
+}

@@ -16,6 +16,7 @@ export default function Menu() {
   const [openDialogTodasComandas, setOpenDialogTodasComandas] = useState(false);
   const [comandasArray, setComandasArray] = useState<any>();
   const [pedidosOpen, setPedidosOpen] = useState(false);
+  const navigate = useNavigate();
   const getComandas = async () => {
     const response = await api.get("/Comanda");
     console.log(response.data.data);
@@ -150,7 +151,6 @@ export default function Menu() {
         })}
     </div>
   );
-  const navigate = useNavigate();
 
   return (
     <div>
@@ -195,7 +195,14 @@ export default function Menu() {
           >
             Exibir comandas
           </button>
-          <button type="button">Exibir comanda por id</button>
+          <button
+            type="button"
+            onClick={() => {
+              navigate("/comandaId");
+            }}
+          >
+            Exibir comanda por id
+          </button>
         </div>
         <BotaoMenu
           tipo="filaPedidos"
