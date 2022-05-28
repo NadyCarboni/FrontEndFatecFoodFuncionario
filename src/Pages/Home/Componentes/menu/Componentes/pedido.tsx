@@ -9,6 +9,7 @@ export default function PedidoComanda({ id, hora }: any) {
     const response = await api.get(`/ItemSelecionado/Pedido?id=${id}`);
 
     setItensSelecionados(response.data.data);
+    console.log(response.data);
     // console.log(response.data.data);
   };
   useEffect(() => {
