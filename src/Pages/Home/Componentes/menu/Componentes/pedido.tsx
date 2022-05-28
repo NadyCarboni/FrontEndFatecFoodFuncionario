@@ -5,13 +5,12 @@ import ItemSelecionado from "./itemSelecionado";
 
 export default function PedidoComanda({ id, hora }: any) {
   const [itensSelecionados, setItensSelecionados] = useState<any[]>([]);
-  // const itenSelecionados: any = [];
+
   const getItemSelecionados = async () => {
     try {
       const response = await api.get("/ItemSelecionado");
-
+      // deixar pra caso vinicius arrume
       // const response = await api.get(`/ItemSelecionado/Pedido?id=${id}`);
-
       // setItensSelecionados(response.data.data);
       // console.log(response.data);
       response.data.data.forEach((element: any) => {
@@ -20,8 +19,6 @@ export default function PedidoComanda({ id, hora }: any) {
             ...itensSelecionados,
             element,
           ]);
-          // console.log(itenSelecionados);
-          // console.log(responseItens.data.data);
         }
       });
     } catch (err: any) {

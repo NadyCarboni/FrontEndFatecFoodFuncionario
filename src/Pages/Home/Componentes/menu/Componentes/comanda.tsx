@@ -5,11 +5,13 @@ import PedidoComanda from "./pedido";
 
 export default function Comanda({ id, pedido }: any) {
   const deleteComanda = async (comandaId: number) => {
-    const response = await api.delete(`/Comanda?id=${comandaId}`);
-    console.log(response);
+    try {
+      const response = await api.delete(`/Comanda?id=${comandaId}`);
+    } catch (err: any) {
+      console.error(err);
+    }
   };
   const getDate = (data: any) => {
-    console.log(data);
     const dataFormatada = new Date(data).toLocaleDateString();
     const horaFormatada = new Date(data).toLocaleTimeString();
     return `${dataFormatada} - ${horaFormatada}`;

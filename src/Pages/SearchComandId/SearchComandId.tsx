@@ -22,11 +22,8 @@ function SearchComandId() {
     const data = {
       restauranteId: JSON.parse(localStorage.getItem("restaurante")!),
     };
-    const response = await api.post("/Comanda", data);
 
     const responseGet = await api("/Comanda");
-    const comandaNovaId =
-      responseGet.data.data[responseGet.data.data.length - 1];
 
     const GoogleChartAPI =
       "https://chart.googleapis.com/chart?cht=qr&chs=500x500&chld=H&chl=";
