@@ -54,6 +54,7 @@ export default function CategoriaItem({
   const [openDialogVer, setOpenDialogVer] = useState(false);
   const [ativoClass, setAtivoClass] = useState("");
   const [check, setCheck] = useState(ativo);
+  const [openDialogDelete, setOpenDialogDelete] = useState(false);
   const updateCategoria = async (dados: any) => {
     const newData = {
       nome: dados.nomeCategoria,
@@ -142,6 +143,34 @@ export default function CategoriaItem({
     getProdutosPorCategoria(id);
   }, []);
 
+  const dialogBodyDelete = (
+    <div className="delete-dialog">
+      <div className="delete-dialog__content">
+        <p className="delete-dialog__text">Deseja mesmo deletar Adicional?</p>
+        <div className="delete-dialog__buttons-container">
+          <button
+            type="button"
+            className="button-delete-dialog-true"
+            onClick={() => {
+              deleteCategoria();
+            }}
+          >
+            sim
+          </button>
+          <button
+            type="button"
+            className="button-delete-dialog-false"
+            onClick={() => {
+              setOpenDialogDelete(false);
+            }}
+          >
+            não
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+
   const dialogBodyVerCategoria = (
     <div className="verCategoriaBody">
       <div className="verHeader">
@@ -209,6 +238,13 @@ export default function CategoriaItem({
           closeDialog={setOpenDialogVer}
           title=""
           body={dialogBodyVerCategoria}
+        />
+      )}
+      {openDialogDelete && (
+        <Dialog
+          closeDialog={setOpenDialogDelete}
+          title=""
+          body={dialogBodyDelete}
         />
       )}
       <div className="categoriaItem" key={id}>

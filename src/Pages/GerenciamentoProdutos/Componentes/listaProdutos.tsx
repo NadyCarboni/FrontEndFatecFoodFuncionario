@@ -118,6 +118,7 @@ export default function ListaProdutos({
   const [nomeProduto, setNomeProduto] = useState(nome);
   const [categorias, setCategorias] = useState<any[]>();
   const [openDialog, setOpenDialog] = useState(false);
+  const [openDialogDelete, setOpenDialogDelete] = useState(false);
 
   const getCategorias = async () => {
     const response = await api.get("/Categoria");
@@ -173,7 +174,7 @@ export default function ListaProdutos({
             type="button"
             className="deletar poppins small"
             onClick={() => {
-              deleteProduto(id);
+              setOpenDialogDelete(true);
               setOpenDialog(false);
             }}
           >
@@ -382,6 +383,35 @@ export default function ListaProdutos({
       </form>
     </div>
   );
+
+  const dialogBodyDelete = (
+    <div className="delete-dialog">
+      <div className="delete-dialog__content">
+        <p className="delete-dialog__text">Deseja mesmo deletar Adicional?</p>
+        <div className="delete-dialog__buttons-container">
+          <button
+            type="button"
+            className="button-delete-dialog-true"
+            onClick={() => {
+              deleteProduto(id);
+            }}
+          >
+            sim
+          </button>
+          <button
+            type="button"
+            className="button-delete-dialog-false"
+            onClick={() => {
+              setOpenDialogDelete(false);
+            }}
+          >
+            não
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <>
       {openDialog && (
@@ -392,6 +422,13 @@ export default function ListaProdutos({
           closeDialog={setOpenDialogEdit}
           body={dialogEditbody}
           title="Editar Produto"
+        />
+      )}
+      {openDialogDelete && (
+        <Dialog
+          closeDialog={setOpenDialogDelete}
+          title=""
+          body={dialogBodyDelete}
         />
       )}
       <div className={ativo === true ? "produto" : "produto desativado"}>
@@ -416,7 +453,7 @@ export default function ListaProdutos({
                 type="button"
                 className="titleGrad1 poppins ver deletar-produto"
                 onClick={() => {
-                  deleteProduto(id);
+                  setOpenDialogDelete(true);
                 }}
               >
                 Deletar
