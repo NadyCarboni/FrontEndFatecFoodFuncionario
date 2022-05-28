@@ -7,31 +7,40 @@ import "./style.css";
 import Dialog from "../../../Componentes/dialog";
 import api from "../../../services/api";
 import Adicionais from "../../GerenciamentoAdicionais/adicionais";
+import ItemSelecionado from "./itemSelecionado";
+import ItemSelecionadoToPrint from "./itemSelecionadoToPrint";
 
 export default function Pedido({
   comanda,
   data,
   id,
-  itemSelecionado,
+
   adicional,
 }: any) {
   const [produtos, setProdutos] = useState<any[]>();
-  let nomeProduto = "";
+  const [nomeProduto, setNomeProduto] = useState<any>();
   const nomeProdutoToPrint = "";
   const [openDialog, setOpenDialog] = useState(false);
-
+  const [itensSelecionados, setItensSelecionados] = useState<any>();
   const getDate = (data: any) => {
     const dataFormatada = new Date(data).toLocaleDateString();
     const horaFormatada = new Date(data).toLocaleTimeString();
     return `${dataFormatada} - ${horaFormatada}`;
   };
+  const getItemSelecionados = async () => {
+    const response = await api.get(`/ItemSelecionado/Pedido?id=${id}`);
+
+    setItensSelecionados(response.data.data);
+    console.log(response.data.data);
+  };
   const getProdutos = async () => {
     const response = await api.get("/Produto");
-    console.log(response.data.data);
+    // console.log(response.data.data);
     setProdutos(response.data.data);
   };
 
   useEffect(() => {
+    getItemSelecionados();
     getProdutos();
   }, []);
   const toPrintPedido = (
@@ -47,7 +56,19 @@ export default function Pedido({
               <b className="poppins"> Número da comanda: </b>
               {comanda}
             </li>
-            {itemSelecionado?.map((element: any) => {
+            {itensSelecionados?.map((element: any) => {
+              console.log(element);
+              return (
+                <ItemSelecionadoToPrint
+                  id={element.id}
+                  observacoes={element.observacoes}
+                  produtoId={element.produtoId}
+                  quantidade={element.quantidade}
+                  adicionais={element.adicionalSelecionado}
+                />
+              );
+            })}
+            {/* {itensSelecionados?.map((element: any) => {
               produtos?.forEach((produto: any) => {
                 if (produto.id === element.produtoId) {
                   nomeProduto = produto.nome;
@@ -75,7 +96,7 @@ export default function Pedido({
                   </li>
                 </>
               );
-            })}
+            })} */}
           </ul>
         </ul>
       </div>
@@ -132,7 +153,26 @@ export default function Pedido({
       <div className=" itemLista flex m-4">
         <div className="itemTitulo p-2">Itens selecionados:</div>
         <ul>
-          {itemSelecionado?.map((element: any) => {
+          {itensSelecionados ? (
+            itensSelecionados?.map((element: any) => {
+              console.log(element.adicionalSelecionado);
+              return (
+                <ItemSelecionado
+                  id={element.id}
+                  observacoes={element.observacoes}
+                  produtoId={element.produtoId}
+                  quantidade={element.quantidade}
+                  adicionais={element.adicionalSelecionado}
+                />
+              );
+            })
+          ) : (
+            <div className="flex align-itens-center justify-content-center">
+              Nada foi adicionado
+            </div>
+          )}
+          {/* {itemSelecionado?.map((element: any) => {
+            console.log(element);
             produtos?.forEach((produto: any) => {
               if (produto.id === element.produtoId) {
                 nomeProduto = produto.nome;
@@ -159,10 +199,15 @@ export default function Pedido({
                     </span>
                     {element.quantidade}
                   </li>
+                  <li>
+                    <span className="titleGrad1 small poppins mx-2 px-1">
+                      Adicionais:{" "}
+                    </span>
+                  </li>
                 </ul>
               </li>
             );
-          })}
+          })} */}
         </ul>
       </div>
       {/* <p>{itemSelecionado}</p> */}
