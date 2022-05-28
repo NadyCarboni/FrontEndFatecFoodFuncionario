@@ -143,7 +143,14 @@ export default function ListaProdutos({
           <img src={`http://54.175.22.87${img}`} alt="" />
         </div>
         <div className="flex column px-4">
-          <button type="button" className="deletar poppins small">
+          <button
+            type="button"
+            className="deletar poppins small"
+            onClick={() => {
+              deleteProduto(id);
+              setOpenDialog(false);
+            }}
+          >
             Deletar produto
           </button>
           <h2>{nome}</h2>
