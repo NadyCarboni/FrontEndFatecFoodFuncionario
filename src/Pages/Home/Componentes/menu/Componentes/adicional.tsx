@@ -15,5 +15,5 @@ export default function Adicional({ adicionalId }: any) {
     getNomeAdicional();
   }, []);
 
-  return <li className="m-2 small poppins"> - {adicional.nome}</li>;
+  return <li className="m-2 small poppins"> - {adicional?.nome}</li>;
 }
