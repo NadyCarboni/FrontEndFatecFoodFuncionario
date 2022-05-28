@@ -64,6 +64,8 @@ export default function CategoriaItem({
     };
     console.log(newData);
     const response = await api.put(`/Categoria?id=${id}`, newData);
+    setOpenDialog(false);
+    window.location.reload();
     console.log(response);
   };
   const dialogBodyEdit = (

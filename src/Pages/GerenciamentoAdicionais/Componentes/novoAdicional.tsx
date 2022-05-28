@@ -43,6 +43,8 @@ export default function NovoAdicional() {
     };
     console.log(newData);
     const response = await api.post("/Adicional", newData);
+    setOpenDialog(false);
+    window.location.reload();
     console.log(response);
   };
   useEffect(() => {

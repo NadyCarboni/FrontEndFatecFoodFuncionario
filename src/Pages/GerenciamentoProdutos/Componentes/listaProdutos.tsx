@@ -113,6 +113,7 @@ export default function ListaProdutos({
     // reset();
     setOpenDialogEdit(false);
     setGetProduto();
+    window.location.reload();
   };
   const [nomeProduto, setNomeProduto] = useState(nome);
   const [categorias, setCategorias] = useState<any[]>();
@@ -121,6 +122,13 @@ export default function ListaProdutos({
   const getCategorias = async () => {
     const response = await api.get("/Categoria");
     setCategorias(response.data.data);
+  };
+
+  const deleteProduto = async (id: any) => {
+    const response = await api.delete(`/Produto?id=${id}`);
+    window.location.reload();
+
+    console.log(response.data);
   };
 
   useEffect(() => {
@@ -382,6 +390,16 @@ export default function ListaProdutos({
                 }}
               >
                 VER
+              </button>
+
+              <button
+                type="button"
+                className="titleGrad1 poppins ver deletar-produto"
+                onClick={() => {
+                  deleteProduto(id);
+                }}
+              >
+                Deletar
               </button>
 
               <button

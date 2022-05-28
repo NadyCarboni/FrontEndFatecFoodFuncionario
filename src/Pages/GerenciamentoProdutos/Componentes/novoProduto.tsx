@@ -74,6 +74,7 @@ export default function NovoProduto({ setGetProduto }: IProps) {
       reset();
       setImage(undefined);
       setGetProduto();
+      setOpenDialog(false);
     } catch (err: any) {
       console.log(err);
     }

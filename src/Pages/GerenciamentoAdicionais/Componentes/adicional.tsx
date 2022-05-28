@@ -28,6 +28,7 @@ export default function Adicional({ nome, preco, id, idProduto, ativo }: any) {
   const [nomeProduto, setNomeProduto] = useState("");
   const deleteAdicional = async (id: any) => {
     const response = await api.delete(`/Adicional?id=${id}`);
+    window.location.reload();
 
     console.log(response.data);
   };
@@ -45,6 +46,8 @@ export default function Adicional({ nome, preco, id, idProduto, ativo }: any) {
       produtoId: data.produtoSelect,
     };
     const response = await api.put(`/Adicional?id=${id}`, newData);
+    setOpenDialog(false);
+    window.location.reload();
     console.log(response);
   };
 

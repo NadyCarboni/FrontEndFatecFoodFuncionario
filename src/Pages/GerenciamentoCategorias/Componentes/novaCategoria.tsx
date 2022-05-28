@@ -37,6 +37,7 @@ export default function NovaCategoria({ setGetCategoria }: IProps) {
     };
     const response = await api.post("/Categoria", newData);
     setGetCategoria();
+    setOpenDialog(false);
     console.log(icon);
   };
   const dialogBody = (

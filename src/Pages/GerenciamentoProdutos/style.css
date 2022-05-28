@@ -127,3 +127,7 @@ input[type="file"] {
 p.pessoas {
   margin-left: 1rem !important;
 }
+
+.deletar-produto {
+  margin-left: 10px !important;
+}
