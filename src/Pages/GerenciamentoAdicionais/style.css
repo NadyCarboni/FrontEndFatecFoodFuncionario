@@ -12,3 +12,45 @@
   align-items: center;
   color: #fff;
 }
+
+.delete-dialog {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+  height: 30vh;
+  margin-top: 150px !important;
+}
+
+.delete-dialog__text {
+  font-size: 36px;
+  font-weight: bolder;
+  margin-bottom: 30px !important;
+}
+
+.delete-dialog__content {
+  width: 700px;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.button-delete-dialog-true {
+  color: #080808 !important;
+  background-color: #2fff6b !important;
+  font-size: 28px;
+  padding: .5em 1em !important;
+  border-radius: 20px;
+  margin-right: 20px !important;
+
+}
+
+.button-delete-dialog-false {
+  color: #080808 !important;
+  background-color: #ff2f44 !important;
+  font-size: 28px;
+  padding: .5em 1em !important;
+  border-radius: 20px;
+  margin-right: 20px !important;
+}

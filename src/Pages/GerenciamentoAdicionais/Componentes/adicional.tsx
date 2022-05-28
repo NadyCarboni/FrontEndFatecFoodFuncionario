@@ -17,6 +17,7 @@ export default function Adicional({ nome, preco, id, idProduto, ativo }: any) {
     console.log(response.data.data);
     setProdutos(response.data.data);
   };
+  const [openDialogDelete, setOpenDialogDelete] = useState(false);
 
   const {
     control,
@@ -169,6 +170,34 @@ export default function Adicional({ nome, preco, id, idProduto, ativo }: any) {
     </div>
   );
 
+  const dialogBodyDelete = (
+    <div className="delete-dialog">
+      <div className="delete-dialog__content">
+        <p className="delete-dialog__text">Deseja mesmo deletar Adicional?</p>
+        <div className="delete-dialog__buttons-container">
+          <button
+            type="button"
+            className="button-delete-dialog-true"
+            onClick={() => {
+              deleteAdicional(id);
+            }}
+          >
+            sim
+          </button>
+          <button
+            type="button"
+            className="button-delete-dialog-false"
+            onClick={() => {
+              setOpenDialogDelete(false);
+            }}
+          >
+            não
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+
   useEffect(() => {
     getProdutos();
     getProdutoIndividual();
@@ -180,6 +209,13 @@ export default function Adicional({ nome, preco, id, idProduto, ativo }: any) {
           closeDialog={setOpenDialog}
           title="Editar adicional"
           body={dialogBody}
+        />
+      )}
+      {openDialogDelete && (
+        <Dialog
+          closeDialog={setOpenDialogDelete}
+          title=""
+          body={dialogBodyDelete}
         />
       )}
       <h3>
@@ -196,7 +232,8 @@ export default function Adicional({ nome, preco, id, idProduto, ativo }: any) {
           type="button"
           className="titleGrad1 poppins ver"
           onClick={() => {
-            deleteAdicional(id);
+            // deleteAdicional(id);
+            setOpenDialogDelete(true);
           }}
         >
           Deletar
