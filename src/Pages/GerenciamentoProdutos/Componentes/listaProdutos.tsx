@@ -138,11 +138,37 @@ export default function ListaProdutos({
   }, []);
   const dialogBody = (
     <div>
-      <div className="flex">
+      <div className="flex details-container">
         <div className="detailFoto">
           <img src={`http://54.175.22.87${img}`} alt="" />
         </div>
-        <div className="flex column px-4">
+        <div className="flex column px-4 details-comlumn">
+          <h2 className="deatils-name">{nome}</h2>
+
+          <div className="my-1 line-container">
+            <span>Código</span>
+            <p className="width-column">{id}</p>
+          </div>
+
+          <div className="my-1 line-container">
+            <span>Preço</span>
+            <span className="width-column">
+              R$ {preco.toFixed(2).toString().replace(".", ",")}
+            </span>
+          </div>
+
+          <div className="my-1 line-container">
+            <span>Categoria</span>
+            <span className="titleGrad1 nomeCategoria poppins small width-column">
+              {categoriaNome}
+            </span>
+          </div>
+
+          <div className="my-1 line-container">
+            <span>Descrição</span>
+            <p className="width-column">{descricao}</p>
+          </div>
+
           <button
             type="button"
             className="deletar poppins small"
@@ -153,19 +179,6 @@ export default function ListaProdutos({
           >
             Deletar produto
           </button>
-          <h2>{nome}</h2>
-          <p className="my-2">Código: {id}</p>
-          <p className="my-2">{descricao}</p>
-          <p className="my-1 mt-3">
-            Preço:{" "}
-            <span>R$ {preco.toFixed(2).toString().replace(".", ",")}</span>
-          </p>
-          <p className="my-1 ">
-            <span>Categoria:</span>
-            <span className="titleGrad1 nomeCategoria poppins small ">
-              {categoriaNome}
-            </span>
-          </p>
         </div>
       </div>
     </div>

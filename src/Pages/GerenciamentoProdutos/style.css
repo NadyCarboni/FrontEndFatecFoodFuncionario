@@ -131,3 +131,43 @@ p.pessoas {
 .deletar-produto {
   margin-left: 10px !important;
 }
+
+.details-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.deatils-name {
+  display: block;
+  font-size: 20px;
+  background-color: #1e1e1e;
+  border-radius: 50px;
+  transform: translateY(-25px);
+  padding: 1em !important;
+}
+
+.deletar {
+  padding: 1em !important;
+  font-size: 18px;
+  font-weight: bolder;
+  margin-top: 50px !important;
+  margin-bottom: 20px !important;
+}
+
+.line-container {
+  border-bottom: 1px solid white !important;
+  display: flex;
+  justify-content: space-between;
+  padding: 1em  0 !important;
+}
+
+.details-comlumn {
+  width: 500px;
+}
+
+.width-column {
+  max-width: 50%;
+  overflow-wrap: anywhere;
+}
