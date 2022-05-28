@@ -9,6 +9,7 @@ export default function Comanda({ id, pedido }: any) {
     console.log(response);
   };
   const getDate = (data: any) => {
+    console.log(data);
     const dataFormatada = new Date(data).toLocaleDateString();
     const horaFormatada = new Date(data).toLocaleTimeString();
     return `${dataFormatada} - ${horaFormatada}`;
@@ -38,7 +39,7 @@ export default function Comanda({ id, pedido }: any) {
       <button
         type="button"
         onClick={() => deleteComanda(id)}
-        className="ver titleGrad1 poppins small deletar mx-2"
+        className="ver titleGrad1 poppins small deleteComandaCategoria mx-2"
       >
         Fechar comanda
       </button>

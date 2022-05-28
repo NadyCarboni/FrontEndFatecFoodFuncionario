@@ -149,7 +149,7 @@ export default function CategoriaItem({
           <div className="nomeCategoriaVer titleGrad2 poppins ">{nome}</div>
           <button
             type="button"
-            className=" poppins deletar mx-2"
+            className=" poppins deleteComandaCategoria  mx-2"
             onClick={() => deleteCategoria()}
           >
             Deletar

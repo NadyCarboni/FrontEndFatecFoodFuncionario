@@ -21,17 +21,33 @@ export default function Pedido({
   const [nomeProduto, setNomeProduto] = useState<any>();
   const nomeProdutoToPrint = "";
   const [openDialog, setOpenDialog] = useState(false);
-  const [itensSelecionados, setItensSelecionados] = useState<any>();
+  const [itensSelecionados, setItensSelecionados] = useState<any[]>([]);
   const getDate = (data: any) => {
-    const dataFormatada = new Date(data).toLocaleDateString();
-    const horaFormatada = new Date(data).toLocaleTimeString();
+    const dataFormatada = new Date(data).toLocaleDateString("pt-br");
+    const horaFormatada = new Date(data).toLocaleTimeString("pt-br");
     return `${dataFormatada} - ${horaFormatada}`;
   };
   const getItemSelecionados = async () => {
-    const response = await api.get(`/ItemSelecionado/Pedido?id=${id}`);
+    try {
+      const response = await api.get("/ItemSelecionado");
 
-    setItensSelecionados(response.data.data);
-    console.log(response.data.data);
+      // const response = await api.get(`/ItemSelecionado/Pedido?id=${id}`);
+
+      // setItensSelecionados(response.data.data);
+      // console.log(response.data);
+      response.data.data.forEach((element: any) => {
+        if (element.pedidoId === id) {
+          setItensSelecionados((itensSelecionados) => [
+            ...itensSelecionados,
+            element,
+          ]);
+          // console.log(itenSelecionados);
+          // console.log(responseItens.data.data);
+        }
+      });
+    } catch (err: any) {
+      console.log(err);
+    }
   };
   const getProdutos = async () => {
     const response = await api.get("/Produto");

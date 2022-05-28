@@ -230,7 +230,8 @@ input:checked + .slider:before {
   transform: translateX(26px);
 }
 
-.deletar {
+.deletar,
+.deleteComandaCategoria {
   background: #de6161 !important;
   background: #ff6187 !important; /* novo */
 
@@ -241,6 +242,7 @@ input:checked + .slider:before {
   transition: 0.5s;
 }
 
-.deletar:hover {
+.deletar:hover,
+.deleteComandaCategoria :hover {
   opacity: 0.7;
 }

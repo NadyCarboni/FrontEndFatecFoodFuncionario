@@ -4,16 +4,33 @@ import api from "../../../../../services/api";
 import ItemSelecionado from "./itemSelecionado";
 
 export default function PedidoComanda({ id, hora }: any) {
-  const [itensSelecionados, setItensSelecionados] = useState<any>();
+  const [itensSelecionados, setItensSelecionados] = useState<any[]>([]);
+  // const itenSelecionados: any = [];
   const getItemSelecionados = async () => {
-    const response = await api.get(`/ItemSelecionado/Pedido?id=${id}`);
+    try {
+      const response = await api.get("/ItemSelecionado");
 
-    setItensSelecionados(response.data.data);
-    console.log(response.data);
-    // console.log(response.data.data);
+      // const response = await api.get(`/ItemSelecionado/Pedido?id=${id}`);
+
+      // setItensSelecionados(response.data.data);
+      // console.log(response.data);
+      response.data.data.forEach((element: any) => {
+        if (element.pedidoId === id) {
+          setItensSelecionados((itensSelecionados) => [
+            ...itensSelecionados,
+            element,
+          ]);
+          // console.log(itenSelecionados);
+          // console.log(responseItens.data.data);
+        }
+      });
+    } catch (err: any) {
+      console.log(err);
+    }
   };
   useEffect(() => {
     getItemSelecionados();
+    // console.log(itenSelecionados);
   }, []);
 
   return (
@@ -22,7 +39,7 @@ export default function PedidoComanda({ id, hora }: any) {
       <span className="mx-2">{hora}</span>
       <div className="selected">
         {itensSelecionados?.map((element: any) => {
-          console.log(element.adicionalSelecionado);
+          console.log(element);
           return (
             <ItemSelecionado
               id={element.id}
