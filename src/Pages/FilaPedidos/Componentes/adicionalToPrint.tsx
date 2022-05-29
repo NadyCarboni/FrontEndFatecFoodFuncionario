@@ -5,10 +5,12 @@ import api from "../../../services/api";
 export default function AdicionalToPrint({ adicionalId }: any) {
   const [adicional, setAdicional] = useState<any>();
   const getNomeAdicional = async () => {
-    const response = await api.get(`/Adicional/Individual?id=${adicionalId}`);
-
-    setAdicional(response.data.data[0]);
-    console.log(response.data.data[0]);
+    try {
+      const response = await api.get(`/Adicional/Individual?id=${adicionalId}`);
+      setAdicional(response.data.data[0]);
+    } catch (err: any) {
+      console.error(err);
+    }
   };
 
   useEffect(() => {

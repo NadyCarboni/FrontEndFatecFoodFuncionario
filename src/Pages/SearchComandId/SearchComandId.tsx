@@ -10,28 +10,36 @@ import "./SearchComandId.css";
 function SearchComandId() {
   const [pedidosComanda, setPedidosComanda] = useState<any>();
   const [searchId, setSearchId] = useState<any>();
-  const [qrcode, setQrcode] = useState("");
+  const [qrcode, setQrcode] = useState<any>();
   const [openDialog, setOpenDialog] = useState(false);
 
   const getPedidosComanda = async () => {
-    const response = await api.get(`/Pedido/Comanda?id=${searchId}`);
-    setPedidosComanda(response.data.data);
+    try {
+      const response = await api.get(`/Pedido/Comanda?id=${searchId}`);
+      setPedidosComanda(response.data.data);
+    } catch (err: any) {
+      console.error(err);
+    }
   };
 
   const gerarQrCode = async () => {
-    const data = {
-      restauranteId: JSON.parse(localStorage.getItem("restaurante")!),
-    };
+    try {
+      const data = {
+        restauranteId: JSON.parse(localStorage.getItem("restaurante")!),
+      };
 
-    const responseGet = await api("/Comanda");
+      const responseGet = await api.get(`/Comanda/Individual?id=${searchId}`);
 
-    const GoogleChartAPI =
-      "https://chart.googleapis.com/chart?cht=qr&chs=500x500&chld=H&chl=";
-    const conteudoQRCode = GoogleChartAPI + encodeURIComponent(searchId);
-    setQrcode(conteudoQRCode);
+      const GoogleChartAPI =
+        "https://chart.googleapis.com/chart?cht=qr&chs=500x500&chld=H&chl=";
+      const conteudoQRCode =
+        GoogleChartAPI +
+        encodeURIComponent(`https://www.fatecfood.com.br/${searchId}`);
+      setQrcode(conteudoQRCode);
+    } catch (err: any) {
+      setQrcode(undefined);
+    }
   };
-
-  console.log("pedidosComanda: ", pedidosComanda);
 
   const toPrint = (
     <div className="toPrintWrapper">
@@ -122,9 +130,9 @@ function SearchComandId() {
           </div>
         </div>
 
-        {qrcode && (
+        {qrcode ? (
           <div className=" flex column justify-content-center align-itens-center qrcode">
-            <p className="my-2 comanda">Última comanda - ID: {searchId}</p>
+            <p className="my-2 comanda">Comanda - ID: {searchId}</p>
             <img src={qrcode} alt="" />
 
             <button
@@ -136,6 +144,10 @@ function SearchComandId() {
             >
               Imprimir
             </button>
+          </div>
+        ) : (
+          <div className="comandaNotFound poppins">
+            Procure uma comanda existente...
           </div>
         )}
 

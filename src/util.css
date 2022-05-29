@@ -413,15 +413,26 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #1d1d1d;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #ccc;
+  background: #3e3e3e;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #aaa;
+  background: #4a4a4a;
+}
+
+.comandaNotFound {
+  margin: 5rem !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  border-radius: 13px;
+  padding: 2rem !important;
+  background-color: #ff3364;
 }

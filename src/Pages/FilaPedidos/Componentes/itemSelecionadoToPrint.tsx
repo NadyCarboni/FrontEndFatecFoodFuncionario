@@ -13,9 +13,13 @@ export default function ItemSelecionadoToPrint({
   const [produto, setProduto] = useState<any>();
 
   const getNomeProduto = async () => {
-    const response = await api.get(`/Produto/Individual?id=${produtoId}`);
-    console.log(response.data.data[0]);
-    setProduto(response.data.data[0]);
+    try {
+      const response = await api.get(`/Produto/Individual?id=${produtoId}`);
+      console.log(response.data.data[0]);
+      setProduto(response.data.data[0]);
+    } catch (err: any) {
+      console.error(err);
+    }
   };
 
   useEffect(() => {

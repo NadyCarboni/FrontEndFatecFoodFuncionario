@@ -53,16 +53,16 @@ export default function Menu() {
       const comandaNovaId =
         responseGet.data.data[responseGet.data.data.length - 1];
 
-      console.log(comandaNovaId.id);
       const GoogleChartAPI =
         "https://chart.googleapis.com/chart?cht=qr&chs=500x500&chld=H&chl=";
-      console.log(comandaNovaId);
+
       const conteudoQRCode =
-        GoogleChartAPI + encodeURIComponent(comandaNovaId.id);
+        GoogleChartAPI +
+        encodeURIComponent(`https://www.fatecfood.com.br/${comandaNovaId.id}`);
       setCodComanda(comandaNovaId.id);
       setQrcode(conteudoQRCode);
     } catch (err: any) {
-      console.log(err);
+      console.error(err);
     }
   };
 
