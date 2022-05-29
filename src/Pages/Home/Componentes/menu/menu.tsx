@@ -47,9 +47,9 @@ export default function Menu() {
       const data = {
         restauranteId: JSON.parse(localStorage.getItem("restaurante")!),
       };
-      const response = await api.post("/Comanda", data);
+      await api.post("/Comanda", data);
 
-      const responseGet = await api("/Comanda");
+      const responseGet = await api.get("/Comanda");
       const comandaNovaId =
         responseGet.data.data[responseGet.data.data.length - 1];
 

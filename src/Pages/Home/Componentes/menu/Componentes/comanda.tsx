@@ -7,6 +7,7 @@ export default function Comanda({ id, pedido }: any) {
   const deleteComanda = async (comandaId: number) => {
     try {
       await api.delete(`/Comanda?id=${comandaId}`);
+      window.location.reload();
     } catch (err: any) {
       console.error(err);
     }
