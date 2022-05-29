@@ -6,7 +6,7 @@ import PedidoComanda from "./pedido";
 export default function Comanda({ id, pedido }: any) {
   const deleteComanda = async (comandaId: number) => {
     try {
-      const response = await api.delete(`/Comanda?id=${comandaId}`);
+      await api.delete(`/Comanda?id=${comandaId}`);
     } catch (err: any) {
       console.error(err);
     }
@@ -16,7 +16,7 @@ export default function Comanda({ id, pedido }: any) {
     const horaFormatada = new Date(data).toLocaleTimeString();
     return `${dataFormatada} - ${horaFormatada}`;
   };
-  // console.log("pedido", pedido);
+
   const [pedidosOpen, setPedidosOpen] = useState(false);
   return (
     <div className="comandaItem m-3">

@@ -10,15 +10,23 @@ export default function Produtos() {
   const [produto, setProduto] = useState<any[]>([]);
   const [searchNome, setSearchNome] = useState<string>();
   const getProduto = async () => {
-    const response = await api.get("/Produto");
+    try {
+      const response = await api.get("/Produto");
 
-    setProduto(response.data.data);
+      setProduto(response.data.data);
+    } catch (err: any) {
+      console.log(err);
+    }
   };
 
   const getProdutoSearch = async () => {
-    const response = await api.get(`/Produto/Nome?nome=${searchNome}`);
+    try {
+      const response = await api.get(`/Produto/Nome?nome=${searchNome}`);
 
-    setProduto(response.data.data);
+      setProduto(response.data.data);
+    } catch (err: any) {
+      console.error(err);
+    }
   };
 
   useEffect(() => {

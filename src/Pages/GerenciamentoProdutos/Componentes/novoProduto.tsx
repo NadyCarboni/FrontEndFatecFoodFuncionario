@@ -22,24 +22,18 @@ interface IProps {
 }
 
 export default function NovoProduto({ setGetProduto }: IProps) {
-  const [icon, setIcon] = useState("fa-circle-plus");
   const [categorias, setCategorias] = useState<any[]>();
-  const [added, setAdded] = useState(false);
-  const [adicionais, setAdicionais] = useState<any[]>();
   const [check, setCheck] = useState(true);
-  const [valuePreco, setValuePreco] = useState();
   const [image, setImage] = useState<string | undefined>();
+  const [openDialog, setOpenDialog] = useState(false);
+  const [selected, setSelected] = useState();
   const {
-    control,
     handleSubmit,
     register,
     reset,
     formState: { errors },
   } = useForm();
 
-  const [openDialog, setOpenDialog] = useState(false);
-  const [selected, setSelected] = useState();
-  const [adicionalSelected, setAdicionalSelected] = useState();
   const convertBase64 = (file: any) => {
     return new Promise((resolve, reject) => {
       const fileReader = new FileReader();
@@ -68,34 +62,28 @@ export default function NovoProduto({ setGetProduto }: IProps) {
         porcao: data.qtdePessoasProduto,
         descricao: data.descricaoProduto,
       };
-      console.log(newData);
-      const response = await api.post("/Produto", newData);
-      console.log(response);
+
+      await api.post("/Produto", newData);
+
       reset();
       setImage(undefined);
       setGetProduto();
       setOpenDialog(false);
     } catch (err: any) {
-      console.log(err);
+      console.error(err);
     }
   };
   const getCategorias = async () => {
-    const response = await api.get("/Categoria");
-    setCategorias(response.data.data);
+    try {
+      const response = await api.get("/Categoria");
+      setCategorias(response.data.data);
+    } catch (err: any) {
+      console.error(err);
+    }
   };
 
-  const getAdicionais = async () => {
-    const response = await api.get("/Adicional");
-    setAdicionais(response.data.data);
-    console.log(response.data.data);
-  };
-  const getProdutos = async () => {
-    const response = await api.get("/Produto");
-  };
   useEffect(() => {
-    getAdicionais();
     getCategorias();
-    getProdutos();
   }, []);
 
   const dialogBody = (
@@ -212,20 +200,9 @@ export default function NovoProduto({ setGetProduto }: IProps) {
               placeholder="Descrição do produto..."
             />
           </div>
-          {/* <TextArea
-            name="descricaoProduto"
-            label="Descrição:"
-            placeholder="Descrição do produto..."
-          /> */}
         </div>
 
         <div className="input-box">
-          {/* <SelectInput
-           
-            name="categoriaSelect"
-            label="Categorias:"
-            options={["banana", "maça"]}
-          /> */}
           <div className="inputDefaultContainer ">
             <label htmlFor="categoriaSelect">Categorias</label>
             <select

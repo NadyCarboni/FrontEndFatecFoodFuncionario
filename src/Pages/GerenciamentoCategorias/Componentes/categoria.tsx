@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 
 import Dialog from "../../../Componentes/dialog";
 import IconChooser from "../../../Componentes/iconChooser";
-import Input from "../../../Componentes/input";
 import InputSearch from "../../../Componentes/inputSearch";
 import SaveBtn from "../../../Componentes/saveBtn";
 import api from "../../../services/api";
@@ -28,57 +27,60 @@ export default function CategoriaItem({
   itens,
 }: ICategoriaItem) {
   const {
-    control,
     handleSubmit,
     register,
-    reset,
     formState: { errors },
   } = useForm();
   const [produtos, setProdutos] = useState(itens);
   const getProdutosPorCategoria = async (id: number) => {
-    const response = await api.get(`/Produto/Categoria?id=${id}`);
+    try {
+      const response = await api.get(`/Produto/Categoria?id=${id}`);
 
-    setProdutos(response.data.data);
+      setProdutos(response.data.data);
+    } catch (err: any) {
+      console.error(err);
+    }
   };
 
   const deleteProduto = async (idDelete: number) => {
-    const response = await api.delete(`/Produto?id=${idDelete}`);
+    try {
+      await api.delete(`/Produto?id=${idDelete}`);
 
-    getProdutosPorCategoria(id);
+      getProdutosPorCategoria(id);
+    } catch (err: any) {
+      console.error(err);
+    }
   };
 
-  const [icon, setIcon] = useState("fa-circle-plus");
-  const [added, setAdded] = useState(true);
+  const [icon, setIcon] = useState<string>();
+
   const [nomeCategoria, setNomeCategoria] = useState(nome);
   const [openDialog, setOpenDialog] = useState(false);
   const [openDialogVer, setOpenDialogVer] = useState(false);
-  const [ativoClass, setAtivoClass] = useState("");
+
   const [check, setCheck] = useState(ativo);
   const [openDialogDelete, setOpenDialogDelete] = useState(false);
   const updateCategoria = async (dados: any) => {
-    const newData = {
-      nome: dados.nomeCategoria,
-      ativo: check,
-      restauranteId: JSON.parse(localStorage.getItem("restaurante")!),
-      imagem: icon,
-      id,
-    };
-    console.log(newData);
-    const response = await api.put(`/Categoria?id=${id}`, newData);
-    setOpenDialog(false);
-    window.location.reload();
-    console.log(response);
+    try {
+      const newData = {
+        nome: dados.nomeCategoria,
+        ativo: check,
+        restauranteId: JSON.parse(localStorage.getItem("restaurante")!),
+        imagem: icon,
+        id,
+      };
+
+      await api.put(`/Categoria?id=${id}`, newData);
+
+      window.location.reload();
+    } catch (err: any) {
+      console.error(err);
+    }
   };
   const dialogBodyEdit = (
     <div className="novaCategoriaDialogBody" key={id}>
       <form onSubmit={handleSubmit(updateCategoria)}>
         <div className="flex align-itens-center input-box">
-          {/* <Input
-          name="nomeCategoria"
-          label="Nome:"
-          value={nomeCategoria}
-          onChange={(e) => setNomeCategoria(e.value)}
-        /> */}
           <div className="inputDefaultContainer ">
             <label htmlFor="nomeCategoria">Nome:</label>
 
@@ -96,15 +98,8 @@ export default function CategoriaItem({
           </div>
         </div>
         <div className="iconBox my-3 flex align-itens-center">
-          <i className={`fa-solid fa-${icon}  fa-2x`} />
-          {added ? (
-            <span className="mx-2">Ícone adicionado! </span>
-          ) : (
-            <span className="mx-2">+ Adicionar ícone</span>
-          )}
-
-          {/* <IconPicker value={value} onChange={(v) => setValue(v)} /> 
-        <i className={`fa-solid ${item} fa-2x`}> */}
+          <i className={`fa-solid fa-${icon || iconCategoria} fa-2x`} />
+          <span className="mx-2">Selecione um ícone. </span>
         </div>
         <div className="chooser">
           <IconChooser changeIcon={setIcon} />
@@ -135,9 +130,13 @@ export default function CategoriaItem({
   );
 
   const deleteCategoria = async () => {
-    const response = await api.delete(`/Categoria?id=${id}`);
-    console.log(response);
-    setGetCategoria();
+    try {
+      const response = await api.delete(`/Categoria?id=${id}`);
+      console.log(response);
+      setGetCategoria();
+    } catch (err: any) {
+      console.error(err);
+    }
   };
   useEffect(() => {
     getProdutosPorCategoria(id);
@@ -172,7 +171,11 @@ export default function CategoriaItem({
   );
 
   const dialogBodyVerCategoria = (
-    <div className="verCategoriaBody">
+    <div
+      className={
+        ativo === true ? "verCategoriaBody" : "verCategoriaBody desativado"
+      }
+    >
       <div className="verHeader">
         <div className="flex">
           <div className="nomeCategoriaVer titleGrad2 poppins ">{nome}</div>
@@ -247,7 +250,12 @@ export default function CategoriaItem({
           body={dialogBodyDelete}
         />
       )}
-      <div className="categoriaItem" key={id}>
+      <div
+        className={
+          ativo === true ? "categoriaItem" : "categoriaItem desativado"
+        }
+        key={id}
+      >
         <div className="detail">
           <div className="iconBox m-3">
             <i className={`fa-solid fa-${iconCategoria} fa-2x`} />

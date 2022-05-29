@@ -23,22 +23,26 @@ export default function NovaCategoria({ setGetCategoria }: IProps) {
   } = useForm();
   const [icon, setIcon] = useState("fa-circle-plus");
   const [added, setAdded] = useState(false);
-  const [value, setValue] = useState();
 
   const [openDialog, setOpenDialog] = useState(false);
   const [check, setCheck] = useState(true);
 
   const postCategoria = async (dados: any) => {
-    const newData = {
-      nome: dados.nomeCategoria,
-      ativo: check,
-      imagem: icon,
-      restauranteId: JSON.parse(localStorage.getItem("restaurante")!),
-    };
-    const response = await api.post("/Categoria", newData);
-    setGetCategoria();
-    setOpenDialog(false);
-    console.log(icon);
+    try {
+      const newData = {
+        nome: dados.nomeCategoria,
+        ativo: check,
+        imagem: icon,
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        restauranteId: JSON.parse(localStorage.getItem("restaurante")!),
+      };
+      await api.post("/Categoria", newData);
+      setGetCategoria();
+      setOpenDialog(false);
+      console.log(icon);
+    } catch (err: any) {
+      console.error(err);
+    }
   };
   const dialogBody = (
     <div className="novaCategoriaDialogBody">
@@ -61,14 +65,8 @@ export default function NovaCategoria({ setGetCategoria }: IProps) {
         </div>
         <div className="iconBox my-3 flex align-itens-center">
           <i className={`fa-solid fa-${icon} fa-2x`} />
-          {added ? (
-            <span className="mx-2">Ícone adicionado! </span>
-          ) : (
-            <span className="mx-2">+ Adicionar ícone</span>
-          )}
 
-          {/* <IconPicker value={value} onChange={(v) => setValue(v)} /> 
-        <i className={`fa-solid ${item} fa-2x`}> */}
+          <span className="mx-2">Selecione um ícone. </span>
         </div>{" "}
         <div className="chooser">
           <IconChooser changeIcon={setIcon} />

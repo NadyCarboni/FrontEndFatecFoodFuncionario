@@ -13,9 +13,12 @@ export default function ItemSelecionado({
   const [produto, setProduto] = useState<any>();
 
   const getNomeProduto = async () => {
-    const response = await api.get(`/Produto/Individual?id=${produtoId}`);
-
-    setProduto(response.data.data[0]);
+    try {
+      const response = await api.get(`/Produto/Individual?id=${produtoId}`);
+      setProduto(response.data.data[0]);
+    } catch (err: any) {
+      console.error(err);
+    }
   };
 
   useEffect(() => {

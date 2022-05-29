@@ -2,10 +2,8 @@ import React, { useEffect, useState } from "react";
 
 import "./style.css";
 import BtnVoltar from "../../Componentes/btnVoltar";
-import InputSearch from "../../Componentes/inputSearch";
 import api from "../../services/api";
 import Adicional from "./Componentes/adicional";
-import Header from "./Componentes/header";
 import NovoAdicional from "./Componentes/novoAdicional";
 
 export default function Adicionais() {
@@ -13,14 +11,21 @@ export default function Adicionais() {
   const [searchNome, setSearchNome] = useState<string>();
 
   const getAdicionais = async () => {
-    const response = await api.get("/Adicional");
-    setAdicionais(response.data.data);
-    console.log(response.data.data);
+    try {
+      const response = await api.get("/Adicional");
+      setAdicionais(response.data.data);
+    } catch (err: any) {
+      console.error(err);
+    }
   };
 
   const getAdicionaisSearch = async () => {
-    const response = await api.get(`Adicional/Nome?nome=${searchNome}`);
-    setAdicionais(response.data.data);
+    try {
+      const response = await api.get(`Adicional/Nome?nome=${searchNome}`);
+      setAdicionais(response.data.data);
+    } catch (err: any) {
+      console.error(err);
+    }
   };
 
   useEffect(() => {

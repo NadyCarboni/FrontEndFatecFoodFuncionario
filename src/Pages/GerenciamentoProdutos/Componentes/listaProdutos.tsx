@@ -35,14 +35,17 @@ export default function ListaProdutos({
   porcao,
 }: IProps) {
   const [selected, setSelected] = useState(categoriaId);
-  const [adicionalSelected, setAdicionalSelected] = useState(adicionais);
+
   const [categoriaNome, setCategoriaNome] = useState("");
   const [image, setImage] = useState<string | undefined>();
   const [check, setCheck] = useState(ativo);
   const getCategoriaIndividual = async (idCat: number) => {
-    const response = await api.get(`/Categoria/Individual?id=${idCat}`);
-    setCategoriaNome(response.data.data[0].nome);
-    console.log(categoriaNome);
+    try {
+      const response = await api.get(`/Categoria/Individual?id=${idCat}`);
+      setCategoriaNome(response.data.data[0].nome);
+    } catch (err: any) {
+      console.error(err);
+    }
   };
   const convertBase64 = (file: any) => {
     return new Promise((resolve, reject) => {
@@ -60,15 +63,10 @@ export default function ListaProdutos({
   };
 
   async function parseURI(d: any) {
-    const reader =
-      new FileReader(); /* https://developer.mozilla.org/en-US/docs/Web/API/FileReader */
-    reader.readAsDataURL(
-      d
-    ); /* https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readAsDataURL */
+    const reader = new FileReader();
+    reader.readAsDataURL(d);
     return new Promise((res, rej) => {
-      /* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise */
       reader.onload = (e) => {
-        /* https://developer.mozilla.org/en-US/docs/Web/API/FileReader/onload */
         res(e.target?.result);
       };
     });
@@ -83,17 +81,12 @@ export default function ListaProdutos({
 
   const [openDialogEdit, setOpenDialogEdit] = useState(false);
   const {
-    control,
     handleSubmit,
     register,
-    reset,
+
     formState: { errors },
   } = useForm();
-  // const getAdicionais = async () => {
-  //   const response = await api.get("/Adicional");
-  //   setAdicionais(response.data.data);
-  //   console.log(response.data.data);
-  // };
+
   const updateData = async (dados: any) => {
     const blob = await getDataBlob(`http://54.175.22.87${img}`);
 
@@ -110,12 +103,12 @@ export default function ListaProdutos({
 
     const response = await api.put(`/Produto?id=${id}`, newData);
     console.log(response);
-    // reset();
+
     setOpenDialogEdit(false);
     setGetProduto();
     window.location.reload();
   };
-  const [nomeProduto, setNomeProduto] = useState(nome);
+
   const [categorias, setCategorias] = useState<any[]>();
   const [openDialog, setOpenDialog] = useState(false);
   const [openDialogDelete, setOpenDialogDelete] = useState(false);
@@ -133,7 +126,6 @@ export default function ListaProdutos({
   };
 
   useEffect(() => {
-    // getAdicionais();
     getCategorias();
     getCategoriaIndividual(categoriaId);
   }, []);

@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import BtnVoltar from "../../Componentes/btnVoltar";
-import InputSearch from "../../Componentes/inputSearch";
 import api from "../../services/api";
 import CategoriaItem from "./Componentes/categoria";
-import Header from "./Componentes/header";
 import NovaCategoria from "./Componentes/novaCategoria";
 import "./style.css";
 
@@ -21,15 +18,22 @@ export default function Categoria() {
   const [categorias, setCategorias] = useState<any[]>([]);
   const [searchNome, setSearchNome] = useState<string>();
 
-  const navigate = useNavigate();
   const getCategorias = async () => {
-    const response = await api.get("/Categoria");
-    setCategorias(response.data.data);
+    try {
+      const response = await api.get("/Categoria");
+      setCategorias(response.data.data);
+    } catch (err: any) {
+      console.error(err);
+    }
   };
 
   const getCategoriasSearch = async () => {
-    const response = await api.get(`Categoria/Nome?nome=${searchNome}`);
-    setCategorias(response.data.data);
+    try {
+      const response = await api.get(`Categoria/Nome?nome=${searchNome}`);
+      setCategorias(response.data.data);
+    } catch (err: any) {
+      console.error(err);
+    }
   };
 
   useEffect(() => {
