@@ -17,7 +17,7 @@ interface ICategoriaItem {
   itens: [];
   setGetCategoria: any;
 }
-const { API_URL } = process.env;
+// const { API_URL } = process.env;
 export default function CategoriaItem({
   iconCategoria,
   nome,
@@ -196,7 +196,7 @@ export default function CategoriaItem({
           <div className="categoriaItemVer" key={item.id}>
             <div className="detailVer">
               <div className="fotoProduto">
-                <img src={API_URL + item.foto} alt="" />
+                <img src={`http://localhost:5000${item.foto}`} alt="" />
               </div>
               <div className="info">
                 <p>{item.nome}</p>

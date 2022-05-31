@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import api from "../../../../../services/api";
 import PedidoComanda from "./pedido";
 
-const { API_URL } = process.env;
+// const { API_URL } = process.env;
 export default function Comanda({ id, pedido }: any) {
   const deleteComanda = async (comandaId: number) => {
     try {
