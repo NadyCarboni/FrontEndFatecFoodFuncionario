@@ -9,6 +9,8 @@ import Dialog from "../../../Componentes/dialog";
 import SaveBtn from "../../../Componentes/saveBtn";
 import api from "../../../services/api";
 
+const { API_URL } = process.env;
+
 interface IProps {
   porcao: number;
   img: string;
@@ -88,7 +90,7 @@ export default function ListaProdutos({
   } = useForm();
 
   const updateData = async (dados: any) => {
-    const blob = await getDataBlob(`http://54.175.22.87${img}`);
+    const blob = await getDataBlob(API_URL + img);
 
     const newData = {
       id,
@@ -133,7 +135,7 @@ export default function ListaProdutos({
     <div>
       <div className="flex details-container">
         <div className="detailFoto">
-          <img src={`http://54.175.22.87${img}`} alt="" />
+          <img src={API_URL + img} alt="" />
         </div>
         <div className="flex column px-4 details-comlumn">
           <h2 className="deatils-name">{nome}</h2>
@@ -181,7 +183,7 @@ export default function ListaProdutos({
       <form onSubmit={handleSubmit(updateData)}>
         <div className=" align-itens-center">
           <div className="imagemAtual">
-            <img src={image || `http://54.175.22.87${img}`} alt="" />
+            <img src={image || API_URL + img} alt="" />
           </div>{" "}
           <label htmlFor="file" className="fileInput titleGrad2 ver poppins">
             <i className="fa fa-upload px-2" />
@@ -424,7 +426,7 @@ export default function ListaProdutos({
         />
       )}
       <div className={ativo === true ? "produto" : "produto desativado"}>
-        <img src={`http://54.175.22.87${img}`} alt="" />
+        <img src={API_URL + img} alt="" />
         <div className="flex align-itens-center column mt-1 justify-content-center">
           <p className="nome">{nome}</p>
           <div className="ver-edit">

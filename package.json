@@ -1,7 +1,6 @@
 {
   "name": "fatec_food",
   "version": "0.1.0",
-  "homepage": "https://fatecfoodfuncionarios.com.br",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
