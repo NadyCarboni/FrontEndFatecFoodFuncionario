@@ -183,7 +183,7 @@ export default function ListaProdutos({
       <form onSubmit={handleSubmit(updateData)}>
         <div className=" align-itens-center">
           <div className="imagemAtual">
-            <img src={image || `http://localhost:5000/${img}`} alt="" />
+            <img src={image || `http://localhost:5000${img}`} alt="" />
           </div>{" "}
           <label htmlFor="file" className="fileInput titleGrad2 ver poppins">
             <i className="fa fa-upload px-2" />
