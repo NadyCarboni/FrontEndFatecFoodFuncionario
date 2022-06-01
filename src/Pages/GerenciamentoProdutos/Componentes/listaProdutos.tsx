@@ -426,7 +426,7 @@ export default function ListaProdutos({
         />
       )}
       <div className={ativo === true ? "produto" : "produto desativado"}>
-        <img src={`http://localhost:5000/${img}`} alt="" />
+        <img src={`http://localhost:5000${img}`} alt="" />
         <div className="flex align-itens-center column mt-1 justify-content-center">
           <p className="nome">{nome}</p>
           <div className="ver-edit">
