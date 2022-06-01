@@ -196,7 +196,7 @@ export default function CategoriaItem({
           <div className="categoriaItemVer" key={item.id}>
             <div className="detailVer">
               <div className="fotoProduto">
-                <img src={`http://localhost:5000${item.foto}`} alt="" />
+                <img src={`http://34.230.58.123:5000${item.foto}`} alt="" />
               </div>
               <div className="info">
                 <p>{item.nome}</p>

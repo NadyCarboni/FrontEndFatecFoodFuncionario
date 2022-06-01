@@ -28,7 +28,7 @@ export default function Header({ restaurant }: any) {
       <div className="second-row flex justify-content-center align-itens-center">
         <div className="photo">
           <img
-            src={`http://localhost:5000${restaurant?.[0].foto}`}
+            src={`http://34.230.58.123:5000${restaurant?.[0].foto}`}
             alt="Logo"
           />
         </div>
