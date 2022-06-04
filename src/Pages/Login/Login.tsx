@@ -13,7 +13,6 @@ function Login() {
   const [restaurant, setRestaurant] = useState<any>([]);
   const [error, setError] = useState<any>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [hasRestaurant, setHasRestaurant] = useState<boolean>(false);
 
   const convertBase64 = (file: any) => {
     return new Promise((resolve, reject) => {
@@ -87,7 +86,7 @@ function Login() {
     <div className="login">
       <div className="login-container">
         <p className="login-title mb-5">
-          {restaurant?.[0] ? "Login" : "Cadastrar"}
+          {restaurant?.[0] ? "Login" : "Cadastrar Restaurante"}
         </p>
         <div className="input-box login-input">
           {!restaurant?.[0] && (
@@ -134,7 +133,7 @@ function Login() {
             className="inputDefaultContainer mb-3 w-60"
             style={{ width: "60% !important" }}
           >
-            <label htmlFor="userName">User Name</label>
+            <label htmlFor="userName">Nome do usuário</label>
 
             <input
               type="text"

@@ -381,7 +381,7 @@ export default function ListaProdutos({
   const dialogBodyDelete = (
     <div className="delete-dialog">
       <div className="delete-dialog__content">
-        <p className="delete-dialog__text">Deseja mesmo deletar Adicional?</p>
+        <p className="delete-dialog__text">Deseja mesmo deletar Produto?</p>
         <div className="delete-dialog__buttons-container">
           <button
             type="button"

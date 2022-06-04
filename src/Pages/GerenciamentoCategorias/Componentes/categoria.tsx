@@ -145,7 +145,7 @@ export default function CategoriaItem({
   const dialogBodyDelete = (
     <div className="delete-dialog">
       <div className="delete-dialog__content">
-        <p className="delete-dialog__text">Deseja mesmo deletar Adicional?</p>
+        <p className="delete-dialog__text">Deseja mesmo deletar Categoria?</p>
         <div className="delete-dialog__buttons-container">
           <button
             type="button"
@@ -182,7 +182,7 @@ export default function CategoriaItem({
           <button
             type="button"
             className=" poppins deleteComandaCategoria  mx-2"
-            onClick={() => deleteCategoria()}
+            onClick={() => setOpenDialogDelete(true)}
           >
             Deletar
           </button>
