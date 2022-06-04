@@ -246,3 +246,56 @@ input[type="file"]::file-selector-button {
   border-radius: 0.2em;
   font-family: "Poppins";
 } */
+.alert {
+  background-color: #7ccb85;
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  padding: .5rem 1rem !important;
+  border-radius: 40px;
+  animation: abaixa2 .5s ease-in-out;
+}
+
+.succes {
+  background-color: #7ccb85;
+}
+
+.error {
+  background-color: #ff3364;
+}
+
+.alert-icon {
+  margin-right: 20px !important;
+  font-size: 30px !important;
+}
+
+.alert-message {
+  margin-bottom: 5px !important;
+  font-size: 1rem;
+}
+
+.alert-close {
+  margin-left:  30px !important;
+  color: white;
+  background-color: transparent;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+@keyframes abaixa2 {
+  0% {
+    transform: translateY(40px) translateX(-50%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0px) translateX(-50%);
+    opacity: 1;
+  }
+}
+
