@@ -203,7 +203,7 @@ export default function Adicional({ nome, preco, id, idProduto, ativo }: any) {
     getProdutoIndividual();
   }, []);
   return (
-    <div className="adicional column py-5 ">
+    <>
       {openDialog && (
         <Dialog
           closeDialog={setOpenDialog}
@@ -218,37 +218,45 @@ export default function Adicional({ nome, preco, id, idProduto, ativo }: any) {
           body={dialogBodyDelete}
         />
       )}
-      <h3>
-        <p>{nome}</p>
-      </h3>
-      <div className="flex  my-2">
-        <p className="mx-2 text-center">
-          Produto: {nomeProduto} || Preço: R${" "}
-          {preco.toFixed(2).toString().replace(".", ",")}
-        </p>
+      <div
+        className={
+          ativo === true
+            ? "adicional column py-5  "
+            : "adicional column py-5   desativado"
+        }
+      >
+        <h3>
+          <p>{nome}</p>
+        </h3>
+        <div className="flex  my-2">
+          <p className="mx-2 text-center">
+            Produto: {nomeProduto} || Preço: R${" "}
+            {preco.toFixed(2).toString().replace(".", ",")}
+          </p>
+        </div>
+        <div className="delete">
+          <button
+            type="button"
+            className="titleGrad1 poppins ver"
+            onClick={() => {
+              // deleteAdicional(id);
+              setOpenDialogDelete(true);
+            }}
+          >
+            Deletar
+          </button>
+          <button
+            className="editProduto"
+            type="button"
+            style={{ background: "none" }}
+            onClick={() => {
+              setOpenDialog(true);
+            }}
+          >
+            <i className="fa-solid fa-pen " />
+          </button>
+        </div>
       </div>
-      <div className="delete">
-        <button
-          type="button"
-          className="titleGrad1 poppins ver"
-          onClick={() => {
-            // deleteAdicional(id);
-            setOpenDialogDelete(true);
-          }}
-        >
-          Deletar
-        </button>
-        <button
-          className="editProduto"
-          type="button"
-          style={{ background: "none" }}
-          onClick={() => {
-            setOpenDialog(true);
-          }}
-        >
-          <i className="fa-solid fa-pen " />
-        </button>
-      </div>
-    </div>
+    </>
   );
 }

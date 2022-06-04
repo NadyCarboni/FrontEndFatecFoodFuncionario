@@ -43,3 +43,14 @@ li > span {
   border-radius: 13px;
   color: #282828;
 }
+
+.NaoEntregue {
+  display: flex;
+  background-color: #2fff6b !important;
+  color: #282828 !important;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  font-weight: 600 !important;
+  max-width: min-content !important;
+}

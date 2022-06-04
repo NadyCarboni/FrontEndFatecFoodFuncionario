@@ -150,6 +150,18 @@ export default function Pedido({
       {openDialog && (
         <Dialog closeDialog={setOpenDialog} body={toPrintPedido} title="" />
       )}
+      <div className="mx-4">
+        <button
+          type="button"
+          className="titleGrad1 ver  mb-3 poppins NaoEntregue p-2"
+          onClick={() => {
+            setOpenDialog(true);
+          }}
+        >
+          Entregue
+          <i className="fa-solid fa-check mx-1" />
+        </button>
+      </div>
       <p className="mx-4">
         <span className="numeroPedido poppins small">Pedido {id}</span>
         <span className=" mx-2 titleGrad1 px-2 comanda">

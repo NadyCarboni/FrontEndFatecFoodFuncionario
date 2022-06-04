@@ -70,6 +70,7 @@
   z-index: 1000;
   width: 100vw;
   position: fixed;
+
   display: flex;
   justify-content: end;
   justify-content: center; /* novo */
