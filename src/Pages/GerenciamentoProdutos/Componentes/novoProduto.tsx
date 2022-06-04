@@ -122,7 +122,8 @@ export default function NovoProduto({ setGetProduto }: IProps) {
               <input
                 type="text"
                 {...register("nomeProduto", {
-                  required: "Por favor insira o nome do produto", // JS only: <p>error message</p> TS only support string
+                  required: "Por favor insira o nome do produto",
+                  maxLength: 2, // JS only: <p>error message</p> TS only support string
                 })}
                 name="nomeProduto"
                 className={

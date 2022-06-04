@@ -66,7 +66,7 @@ export default function CategoriaItem({
         nome: dados.nomeCategoria,
         ativo: check,
         restauranteId: JSON.parse(localStorage.getItem("restaurante")!),
-        imagem: icon,
+        imagem: icon || iconCategoria,
         id,
       };
 

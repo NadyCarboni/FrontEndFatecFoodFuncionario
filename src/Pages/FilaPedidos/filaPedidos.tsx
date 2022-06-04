@@ -9,7 +9,7 @@ export default function FilaPedidos() {
   const [pedidos, setPedidos] = useState<any>();
   const getPedidos = async () => {
     const response = await api.get("/Pedido");
-    // console.log(response.data.data);
+    console.log(response.data.data);
     setPedidos(response.data.data);
   };
 

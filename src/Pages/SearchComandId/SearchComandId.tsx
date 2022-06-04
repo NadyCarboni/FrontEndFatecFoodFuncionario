@@ -34,7 +34,7 @@ function SearchComandId() {
         "https://chart.googleapis.com/chart?cht=qr&chs=500x500&chld=H&chl=";
       const conteudoQRCode =
         GoogleChartAPI +
-        encodeURIComponent(`https://www.fatecfood.com.br/${searchId}`);
+        encodeURIComponent(`http://www.fatecfood.com.br/${searchId}`);
       setQrcode(conteudoQRCode);
     } catch (err: any) {
       setQrcode(undefined);

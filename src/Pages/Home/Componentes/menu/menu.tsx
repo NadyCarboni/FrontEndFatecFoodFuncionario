@@ -58,7 +58,7 @@ export default function Menu() {
 
       const conteudoQRCode =
         GoogleChartAPI +
-        encodeURIComponent(`https://www.fatecfood.com.br/${comandaNovaId.id}`);
+        encodeURIComponent(`http://www.fatecfood.com.br/${comandaNovaId.id}`);
       setCodComanda(comandaNovaId.id);
       setQrcode(conteudoQRCode);
     } catch (err: any) {
