@@ -44,13 +44,29 @@ li > span {
   color: #282828;
 }
 
-.NaoEntregue {
+.NaoEntregue,
+.Entregue,
+.deletePedido {
   display: flex;
-  background-color: #2fff6b !important;
-  color: #282828 !important;
+
   align-items: center;
   justify-content: center;
   white-space: nowrap;
   font-weight: 600 !important;
   max-width: min-content !important;
+}
+.Entregue {
+  background-color: #2fff6b !important;
+  color: #282828 !important;
+}
+
+.deletePedido {
+  background-color: #ff6187 !important; /* novo */
+
+  padding: 0 !important;
+  border-radius: 30px;
+}
+
+.deletePedido:hover {
+  opacity: 0.7;
 }
