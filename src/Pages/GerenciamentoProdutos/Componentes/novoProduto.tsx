@@ -9,6 +9,7 @@ import "../style.css";
 import { useForm, Controller } from "react-hook-form";
 import { error } from "console";
 
+import Alert from "../../../Componentes/Alert";
 import Dialog from "../../../Componentes/dialog";
 import IconChooser from "../../../Componentes/iconChooser";
 import Input from "../../../Componentes/input";
@@ -23,6 +24,8 @@ interface IProps {
 
 export default function NovoProduto({ setGetProduto }: IProps) {
   const [categorias, setCategorias] = useState<any[]>();
+  const [closeAlert, setCloseAlert] = useState<boolean>(false);
+  const [erroMessage, setErroMessage] = useState("");
   const [check, setCheck] = useState(true);
   const [image, setImage] = useState<string | undefined>();
   const [openDialog, setOpenDialog] = useState(false);
@@ -48,7 +51,7 @@ export default function NovoProduto({ setGetProduto }: IProps) {
       };
     });
   };
-  console.log(errors);
+
   const postData = async (data: any) => {
     try {
       console.log(data);
@@ -84,7 +87,98 @@ export default function NovoProduto({ setGetProduto }: IProps) {
 
   useEffect(() => {
     getCategorias();
-  }, []);
+
+    if (errors.nomeProduto) {
+      try {
+        switch (errors.nomeProduto.type) {
+          case "required":
+            setErroMessage("Por favor, insira um nome para o produto");
+            break;
+          case "maxLength":
+            setErroMessage(
+              "Por favor, insira um nome para o produto com até 30 caracteres"
+            );
+            break;
+          default:
+            break;
+        }
+      } finally {
+        setCloseAlert(true);
+      }
+    } else if (errors.imagemProduto) {
+      try {
+        switch (errors.imagemProduto.type) {
+          case "required":
+            setErroMessage(
+              "Por favor, insira uma imagem nos formatos .png, .jpg ou .jpeg"
+            );
+            break;
+
+          default:
+            break;
+        }
+      } finally {
+        setCloseAlert(true);
+      }
+    } else if (errors.precoProduto) {
+      try {
+        switch (errors.precoProduto.type) {
+          case "required":
+            setErroMessage("Por favor, insira um preço para seu produto");
+            break;
+          case "pattern":
+            setErroMessage(
+              "Por favor, insira um preço válido para seu produto"
+            );
+            break;
+          default:
+            break;
+        }
+      } finally {
+        setCloseAlert(true);
+      }
+    } else if (errors.descricaoProduto) {
+      try {
+        switch (errors.descricaoProduto.type) {
+          case "required":
+            setErroMessage("Por favor, insira uma descrição para seu produto");
+            break;
+          case "maxLength":
+            setErroMessage(
+              "Por favor, insira uma descrição para o produto com até 100 caracteres"
+            );
+            break;
+          default:
+            break;
+        }
+      } finally {
+        setCloseAlert(true);
+      }
+    } else if (errors.qtdePessoasProduto) {
+      try {
+        switch (errors.qtdePessoasProduto) {
+          case "required":
+            setErroMessage("Por favor, insira uma quantidade de pessoas");
+            break;
+          case "maxLength":
+            setErroMessage(
+              "Por favor, insira um número com no máximo dois caracteres"
+            );
+            break;
+          default:
+            break;
+        }
+      } finally {
+        setCloseAlert(true);
+      }
+    }
+  }, [
+    errors.nomeProduto,
+    errors.imagemProduto,
+    errors.precoProduto,
+    errors.descricaoProduto,
+    errors.qtdePessoasProduto,
+  ]);
 
   const dialogBody = (
     <div className="novoProdutoDialogBody">
@@ -102,8 +196,10 @@ export default function NovoProduto({ setGetProduto }: IProps) {
           {!image && <p>São aceitos arquivos no formato .png .jpeg e .jpg </p>}
           <input
             type="file"
+            {...register("imagemProduto", {
+              required: true,
+            })}
             accept="image/png,image/jpeg, image/jpg"
-            required
             className="poppins"
             name="file"
             id="file"
@@ -122,8 +218,8 @@ export default function NovoProduto({ setGetProduto }: IProps) {
               <input
                 type="text"
                 {...register("nomeProduto", {
-                  required: "Por favor insira o nome do produto",
-                  maxLength: 2, // JS only: <p>error message</p> TS only support string
+                  required: true,
+                  maxLength: 30, // JS only: <p>error message</p> TS only support string
                 })}
                 name="nomeProduto"
                 className={
@@ -141,7 +237,7 @@ export default function NovoProduto({ setGetProduto }: IProps) {
                 type="text"
                 {...register("precoProduto", {
                   required: "Por favor insira o preço do produto",
-                  maxLength: 80,
+
                   pattern: {
                     value: /(\$?(:?\d+,?.?)+)/,
                     message: "Por favor, digite um preço válido",
@@ -189,7 +285,7 @@ export default function NovoProduto({ setGetProduto }: IProps) {
             <textarea
               {...register("descricaoProduto", {
                 required: "Por favor insira a descrição do produto",
-                maxLength: 240,
+                maxLength: 100,
               })}
               name="descricaoProduto"
               className={
@@ -218,9 +314,9 @@ export default function NovoProduto({ setGetProduto }: IProps) {
               }
               onChange={(e: any) => setSelected(e.target.value)}
             >
-              <option className="poppins" disabled selected>
+              {/* <option className="poppins" disabled selected>
                 [selecione]
-              </option>
+              </option> */}
               {categorias?.map(
                 (categoria) =>
                   categoria.ativo && (
@@ -260,6 +356,13 @@ export default function NovoProduto({ setGetProduto }: IProps) {
   );
   return (
     <>
+      {closeAlert && (
+        <Alert
+          message={erroMessage}
+          closeAlert={setCloseAlert}
+          status="error"
+        />
+      )}
       {openDialog && (
         <Dialog
           closeDialog={setOpenDialog}

@@ -5,6 +5,7 @@ import Multiselect from "multiselect-react-dropdown";
 import React, { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 
+import Alert from "../../../Componentes/Alert";
 import Dialog from "../../../Componentes/dialog";
 import SaveBtn from "../../../Componentes/saveBtn";
 import api from "../../../services/api";
@@ -37,7 +38,8 @@ export default function ListaProdutos({
   porcao,
 }: IProps) {
   const [selected, setSelected] = useState(categoriaId);
-
+  const [closeAlert, setCloseAlert] = useState<boolean>(false);
+  const [erroMessage, setErroMessage] = useState("");
   const [categoriaNome, setCategoriaNome] = useState("");
   const [image, setImage] = useState<string | undefined>();
   const [check, setCheck] = useState(ativo);
@@ -130,7 +132,79 @@ export default function ListaProdutos({
   useEffect(() => {
     getCategorias();
     getCategoriaIndividual(categoriaId);
-  }, []);
+    if (errors.nomeProduto) {
+      try {
+        switch (errors.nomeProduto.type) {
+          case "required":
+            setErroMessage("Por favor, insira um nome para o produto");
+            break;
+          case "maxLength":
+            setErroMessage(
+              "Por favor, insira um nome para o produto com até 30 caracteres"
+            );
+            break;
+          default:
+            break;
+        }
+      } finally {
+        setCloseAlert(true);
+      }
+    } else if (errors.imagemProduto) {
+      try {
+        switch (errors.imagemProduto.type) {
+          case "required":
+            setErroMessage(
+              "Por favor, insira uma imagem nos formatos .png, .jpg ou .jpeg"
+            );
+            break;
+
+          default:
+            break;
+        }
+      } finally {
+        setCloseAlert(true);
+      }
+    } else if (errors.precoProduto) {
+      try {
+        switch (errors.precoProduto.type) {
+          case "required":
+            setErroMessage("Por favor, insira um preço para seu produto");
+            break;
+          case "pattern":
+            setErroMessage(
+              "Por favor, insira um preço válido para seu produto"
+            );
+            break;
+          default:
+            break;
+        }
+      } finally {
+        setCloseAlert(true);
+      }
+    } else if (errors.descricaoProduto) {
+      try {
+        switch (errors.descricaoProduto.type) {
+          case "required":
+            setErroMessage("Por favor, insira uma descrição para seu produto");
+            break;
+          case "maxLength":
+            setErroMessage(
+              "Por favor, insira uma descrição para o produto com até 100 caracteres"
+            );
+            break;
+          default:
+            break;
+        }
+      } finally {
+        setCloseAlert(true);
+      }
+    }
+  }, [
+    errors.nomeProduto,
+    errors.imagemProduto,
+    errors.precoProduto,
+    errors.descricaoProduto,
+  ]);
   const dialogBody = (
     <div>
       <div className="flex details-container">
@@ -192,6 +266,9 @@ export default function ListaProdutos({
           <input
             type="file"
             accept="image/png,image/jpeg, image/jpg"
+            {...register("imagemProduto", {
+              required: !!image,
+            })}
             className="poppins inputfile"
             name="file"
             id="file"
@@ -231,7 +308,7 @@ export default function ListaProdutos({
                 defaultValue={preco}
                 {...register("precoProduto", {
                   required: "Por favor insira o preço do produto",
-                  maxLength: 80,
+
                   pattern: {
                     value: /(\$?(:?\d+,?.?)+)/,
                     message: "Por favor, digite um preço válido",
@@ -281,7 +358,7 @@ export default function ListaProdutos({
             <textarea
               {...register("descricaoProduto", {
                 required: "Por favor insira a descrição do produto",
-                maxLength: 240,
+                maxLength: 100,
               })}
               defaultValue={descricao}
               name="descricaoProduto"
@@ -409,6 +486,13 @@ export default function ListaProdutos({
 
   return (
     <>
+      {closeAlert && (
+        <Alert
+          message={erroMessage}
+          closeAlert={setCloseAlert}
+          status="error"
+        />
+      )}
       {openDialog && (
         <Dialog closeDialog={setOpenDialog} body={dialogBody} title="" />
       )}

@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
+import Alert from "../../../Componentes/Alert";
 import Dialog from "../../../Componentes/dialog";
 import SaveBtn from "../../../Componentes/saveBtn";
 import api from "../../../services/api";
@@ -11,6 +12,8 @@ export default function Adicional({ nome, preco, id, idProduto, ativo }: any) {
   const [openDialog, setOpenDialog] = useState(false);
   const [check, setCheck] = useState(ativo);
   const [selected, setSelected] = useState();
+  const [closeAlert, setCloseAlert] = useState<boolean>(false);
+  const [erroMessage, setErroMessage] = useState("");
   const [produtos, setProdutos] = useState<any[]>();
   const getProdutos = async () => {
     const response = await api.get("/Produto");
@@ -69,7 +72,7 @@ export default function Adicional({ nome, preco, id, idProduto, ativo }: any) {
                 type="text"
                 {...register("nomeAdicional", {
                   required: true,
-                  maxLength: 80,
+                  maxLength: 30,
                 })}
                 className={
                   errors.nomeAdicional
@@ -92,7 +95,7 @@ export default function Adicional({ nome, preco, id, idProduto, ativo }: any) {
                 type="text"
                 {...register("precoAdicional", {
                   required: "Por favor insira o preço do adicional",
-                  maxLength: 80,
+
                   pattern: {
                     value: /(\$?(:?\d+,?.?)+)/,
                     message: "Por favor, digite um preço válido",
@@ -201,9 +204,52 @@ export default function Adicional({ nome, preco, id, idProduto, ativo }: any) {
   useEffect(() => {
     getProdutos();
     getProdutoIndividual();
-  }, []);
+    if (errors.nomeAdicional) {
+      try {
+        switch (errors.nomeAdicional.type) {
+          case "required":
+            setErroMessage("Por favor, insira um nome para seu adicional");
+            break;
+          case "maxLength":
+            setErroMessage(
+              "Por favor, insira um nome para seu adicional com até 30 caracteres "
+            );
+            break;
+          default:
+            break;
+        }
+      } finally {
+        setCloseAlert(true);
+      }
+    } else if (errors.precoAdicional) {
+      try {
+        switch (errors.precoAdicional.type) {
+          case "required":
+            setErroMessage("Por favor, insira um preço para seu adicional");
+            break;
+          case "pattern":
+            setErroMessage(
+              "Por favor, insira um preço válido para seu adicional"
+            );
+            break;
+          default:
+            break;
+        }
+      } finally {
+        setCloseAlert(true);
+      }
+    }
+  }, [errors.nomeAdicional, errors.precoAdicional]);
   return (
     <>
+      {" "}
+      {closeAlert && (
+        <Alert
+          message={erroMessage}
+          closeAlert={setCloseAlert}
+          status="error"
+        />
+      )}
       {openDialog && (
         <Dialog
           closeDialog={setOpenDialog}

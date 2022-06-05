@@ -251,14 +251,15 @@ input[type="file"]::file-selector-button {
   position: absolute;
   top: 30px;
   left: 50%;
+  z-index: 40000;
   transform: translateX(-50%);
   display: flex;
   justify-content: center;
   align-items: center;
   color: #fff;
-  padding: .5rem 1rem !important;
+  padding: 0.5rem 1rem !important;
   border-radius: 40px;
-  animation: abaixa2 .5s ease-in-out;
+  animation: abaixa2 0.5s ease-in-out;
 }
 
 .succes {
@@ -280,7 +281,7 @@ input[type="file"]::file-selector-button {
 }
 
 .alert-close {
-  margin-left:  30px !important;
+  margin-left: 30px !important;
   color: white;
   background-color: transparent;
   font-size: 20px;
@@ -298,4 +299,3 @@ input[type="file"]::file-selector-button {
     opacity: 1;
   }
 }
-

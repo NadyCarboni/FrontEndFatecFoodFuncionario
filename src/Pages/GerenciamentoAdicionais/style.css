@@ -13,6 +13,11 @@
   color: #fff;
 }
 
+.precoNome {
+  display: grid;
+  grid-template-columns: 8fr 2fr;
+}
+
 .delete-dialog {
   display: flex;
   justify-content: center;
@@ -40,18 +45,17 @@
   color: #080808 !important;
   background-color: #2fff6b !important;
   font-size: 28px;
-  padding: .5em 1em !important;
+  padding: 0.5em 1em !important;
   border-radius: 20px;
   margin-right: 20px !important;
   cursor: pointer;
-
 }
 
 .button-delete-dialog-false {
   color: #080808 !important;
   background-color: #ff2f44 !important;
   font-size: 28px;
-  padding: .5em 1em !important;
+  padding: 0.5em 1em !important;
   border-radius: 20px;
   margin-right: 20px !important;
   cursor: pointer;

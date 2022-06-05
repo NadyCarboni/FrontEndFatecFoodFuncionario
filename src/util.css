@@ -20,6 +20,7 @@
   /* background-color: hsl(346, 100%, 90%) !important; */
   background-color: rgba(255, 97, 135, 25%) !important;
   border: rgba(255, 97, 135) solid 3px;
+  color: #ddd !important;
 }
 .invalid::-webkit-input-placeholder {
   color: #ddd;

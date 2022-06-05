@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
+import Alert from "../../../Componentes/Alert";
 import Dialog from "../../../Componentes/dialog";
 import IconChooser from "../../../Componentes/iconChooser";
 import Input from "../../../Componentes/input";
@@ -22,7 +23,8 @@ export default function NovoAdicional() {
   const [adicionais, setAdicionais] = useState<any[]>();
   const [value, setValue] = useState();
   const [produtos, setProdutos] = useState<any[]>();
-
+  const [closeAlert, setCloseAlert] = useState<boolean>(false);
+  const [erroMessage, setErroMessage] = useState("");
   const getProdutos = async () => {
     const response = await api.get("/Produto");
     console.log(response.data.data);
@@ -49,7 +51,42 @@ export default function NovoAdicional() {
   };
   useEffect(() => {
     getProdutos();
-  }, []);
+    if (errors.nomeAdicional) {
+      try {
+        switch (errors.nomeAdicional.type) {
+          case "required":
+            setErroMessage("Por favor, insira um nome para seu adicional");
+            break;
+          case "maxLength":
+            setErroMessage(
+              "Por favor, insira um nome para seu adicional com até 30 caracteres "
+            );
+            break;
+          default:
+            break;
+        }
+      } finally {
+        setCloseAlert(true);
+      }
+    } else if (errors.precoAdicional) {
+      try {
+        switch (errors.precoAdicional.type) {
+          case "required":
+            setErroMessage("Por favor, insira um preço para seu adicional");
+            break;
+          case "pattern":
+            setErroMessage(
+              "Por favor, insira um preço válido para seu adicional"
+            );
+            break;
+          default:
+            break;
+        }
+      } finally {
+        setCloseAlert(true);
+      }
+    }
+  }, [errors.nomeAdicional, errors.precoAdicional]);
 
   const dialogBody = (
     <div className="novaCategoriaDialogBody">
@@ -68,7 +105,7 @@ export default function NovoAdicional() {
                 type="text"
                 {...register("nomeAdicional", {
                   required: true,
-                  maxLength: 80,
+                  maxLength: 30,
                 })}
                 className={
                   errors.nomeAdicional
@@ -89,7 +126,7 @@ export default function NovoAdicional() {
                 type="text"
                 {...register("precoAdicional", {
                   required: "Por favor insira o preço do adicional",
-                  maxLength: 80,
+
                   pattern: {
                     value: /(\$?(:?\d+,?.?)+)/,
                     message: "Por favor, digite um preço válido",
@@ -125,9 +162,6 @@ export default function NovoAdicional() {
               }
               onChange={(e: any) => setSelected(e.target.value)}
             >
-              <option className="poppins" disabled selected>
-                [selecione]
-              </option>
               {produtos?.map(
                 (produto) =>
                   produto.ativo && (
@@ -167,6 +201,13 @@ export default function NovoAdicional() {
   );
   return (
     <>
+      {closeAlert && (
+        <Alert
+          message={erroMessage}
+          closeAlert={setCloseAlert}
+          status="error"
+        />
+      )}
       {openDialog && (
         <Dialog
           closeDialog={setOpenDialog}

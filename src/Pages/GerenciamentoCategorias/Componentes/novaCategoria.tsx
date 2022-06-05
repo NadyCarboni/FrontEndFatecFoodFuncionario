@@ -1,9 +1,10 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { IconPicker } from "react-fa-icon-picker";
 import { useForm } from "react-hook-form";
 
+import Alert from "../../../Componentes/Alert";
 import Dialog from "../../../Componentes/dialog";
 import IconChooser from "../../../Componentes/iconChooser";
 import Input from "../../../Componentes/input";
@@ -22,10 +23,32 @@ export default function NovaCategoria({ setGetCategoria }: IProps) {
     formState: { errors },
   } = useForm();
   const [icon, setIcon] = useState("fa-circle-plus");
-  const [added, setAdded] = useState(false);
 
+  const [closeAlert, setCloseAlert] = useState<boolean>(false);
+  const [erroMessage, setErroMessage] = useState("");
   const [openDialog, setOpenDialog] = useState(false);
   const [check, setCheck] = useState(true);
+
+  useEffect(() => {
+    if (errors.nomeCategoria) {
+      try {
+        switch (errors.nomeCategoria.type) {
+          case "required":
+            setErroMessage("Por favor, insira um nome para a categoria");
+            break;
+          case "maxLength":
+            setErroMessage(
+              "Por favor, insira um nome para a categoria com até 30 caracteres"
+            );
+            break;
+          default:
+            break;
+        }
+      } finally {
+        setCloseAlert(true);
+      }
+    }
+  }, [errors.nomeCategoria]);
 
   const postCategoria = async (dados: any) => {
     try {
@@ -53,7 +76,7 @@ export default function NovaCategoria({ setGetCategoria }: IProps) {
             <label htmlFor="nomeCategoria">Nome:</label>
             <input
               type="text"
-              {...register("nomeCategoria", { required: true, maxLength: 80 })}
+              {...register("nomeCategoria", { required: true, maxLength: 30 })}
               name="nomeCategoria"
               className={
                 errors.nomeCategoria ? `poppins my-2 invalid` : `poppins my-2 `
@@ -94,6 +117,13 @@ export default function NovaCategoria({ setGetCategoria }: IProps) {
   );
   return (
     <>
+      {closeAlert && (
+        <Alert
+          message={erroMessage}
+          closeAlert={setCloseAlert}
+          status="error"
+        />
+      )}
       {openDialog && (
         <Dialog
           closeDialog={setOpenDialog}

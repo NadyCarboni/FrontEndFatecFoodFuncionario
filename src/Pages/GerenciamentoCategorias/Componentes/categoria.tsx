@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
+import Alert from "../../../Componentes/Alert";
 import Dialog from "../../../Componentes/dialog";
 import IconChooser from "../../../Componentes/iconChooser";
 import InputSearch from "../../../Componentes/inputSearch";
@@ -17,6 +18,7 @@ interface ICategoriaItem {
   itens: [];
   setGetCategoria: any;
 }
+
 // const { API_URL } = process.env;
 export default function CategoriaItem({
   iconCategoria,
@@ -32,6 +34,7 @@ export default function CategoriaItem({
     formState: { errors },
   } = useForm();
   const [produtos, setProdutos] = useState(itens);
+  const [closeAlert, setCloseAlert] = useState<boolean>(false);
   const getProdutosPorCategoria = async (id: number) => {
     try {
       const response = await api.get(`/Produto/Categoria?id=${id}`);
@@ -57,7 +60,7 @@ export default function CategoriaItem({
   const [nomeCategoria, setNomeCategoria] = useState(nome);
   const [openDialog, setOpenDialog] = useState(false);
   const [openDialogVer, setOpenDialogVer] = useState(false);
-
+  const [erroMessage, setErroMessage] = useState("");
   const [check, setCheck] = useState(ativo);
   const [openDialogDelete, setOpenDialogDelete] = useState(false);
   const updateCategoria = async (dados: any) => {
@@ -86,7 +89,7 @@ export default function CategoriaItem({
 
             <input
               type="text"
-              {...register("nomeCategoria", { required: true, maxLength: 80 })}
+              {...register("nomeCategoria", { required: true, maxLength: 30 })}
               className={
                 errors.nomeCategoria ? `poppins my-2 invalid` : `poppins my-2 `
               }
@@ -140,7 +143,26 @@ export default function CategoriaItem({
   };
   useEffect(() => {
     getProdutosPorCategoria(id);
-  }, []);
+
+    if (errors.nomeCategoria) {
+      try {
+        switch (errors.nomeCategoria.type) {
+          case "required":
+            setErroMessage("Por favor, insira um nome para a categoria");
+            break;
+          case "maxLength":
+            setErroMessage(
+              "Por favor, insira um nome para a categoria com até 30 caracteres"
+            );
+            break;
+          default:
+            break;
+        }
+      } finally {
+        setCloseAlert(true);
+      }
+    }
+  }, [errors.nomeCategoria]);
 
   const dialogBodyDelete = (
     <div className="delete-dialog">
@@ -229,6 +251,13 @@ export default function CategoriaItem({
   );
   return (
     <div>
+      {closeAlert && (
+        <Alert
+          message={erroMessage}
+          closeAlert={setCloseAlert}
+          status="error"
+        />
+      )}
       {openDialog && (
         <Dialog
           closeDialog={setOpenDialog}
