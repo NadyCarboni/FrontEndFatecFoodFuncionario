@@ -55,6 +55,8 @@ export default function CategoriaItem({
     }
   };
 
+  console.log(produtos);
+
   const [icon, setIcon] = useState<string>();
 
   const [nomeCategoria, setNomeCategoria] = useState(nome);
@@ -63,6 +65,21 @@ export default function CategoriaItem({
   const [erroMessage, setErroMessage] = useState("");
   const [check, setCheck] = useState(ativo);
   const [openDialogDelete, setOpenDialogDelete] = useState(false);
+  const [searchNome, setSearchNome] = useState<string>();
+
+  const getProdutoCategoria = async () => {
+    try {
+      const response = await api.get(`Produto/Nome?nome=${searchNome}`);
+      setProdutos(
+        response.data.data.filter(
+          (item: { categoriaId: number }) => item.categoriaId === id
+        )
+      );
+    } catch (err: any) {
+      console.error(err);
+    }
+  };
+
   const updateCategoria = async (dados: any) => {
     try {
       const newData = {
@@ -210,7 +227,26 @@ export default function CategoriaItem({
           </button>
         </div>
         <div className="input-box">
-          <InputSearch />
+          <div className="inputSearchContainer">
+            <input
+              type="text"
+              placeholder="O que está procurando?"
+              className="poppins"
+              onChange={(e) => {
+                setSearchNome(e.target.value);
+              }}
+              value={searchNome}
+            />
+            <button
+              className="submit-lente"
+              type="submit"
+              onClick={() => {
+                getProdutoCategoria();
+              }}
+            >
+              <i className="fa fa-search" />
+            </button>
+          </div>
         </div>
       </div>
       {produtos.map((item: any) => {
