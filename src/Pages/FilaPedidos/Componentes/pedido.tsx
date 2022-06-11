@@ -15,7 +15,7 @@ export default function Pedido({
   data,
   id,
   entregue,
-
+  total,
   adicional,
 }: any) {
   const [openDialogDelete, setOpenDialogDelete] = useState(false);
@@ -278,7 +278,11 @@ export default function Pedido({
           )}
         </ul>
       </div>
-      {/* <p>{itemSelecionado}</p> */}
+      <div className="flex valorContainer">
+        <div className="mx-3 valor">
+          Valor: R$ {total.toFixed(2).toString().replace(".", ",")}
+        </div>
+      </div>
     </div>
   );
 }

@@ -70,3 +70,16 @@ li > span {
 .deletePedido:hover {
   opacity: 0.7;
 }
+
+.valor {
+  /* background-color: #fff; */
+  border: 1px solid #fff;
+  color: #fff;
+  padding: 1rem !important;
+  border-radius: 30px;
+  max-width: min-content;
+  white-space: nowrap;
+}
+.valorContainer {
+  justify-content: flex-end;
+}

@@ -104,6 +104,7 @@ export default function FilaPedidos() {
                   entregue={element.entregue}
                   comanda={element.comandaId}
                   data={element.data}
+                  total={element.total}
                   id={element.id}
                   itemSelecionado={element.itemSelecionado}
                 />
