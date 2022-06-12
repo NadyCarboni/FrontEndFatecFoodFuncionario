@@ -367,6 +367,9 @@
 .text-center {
   text-align: center;
 }
+.text-left {
+  text-align: left !important;
+}
 
 .red {
   color: var(--red-100);

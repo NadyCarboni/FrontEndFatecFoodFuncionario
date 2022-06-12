@@ -113,7 +113,7 @@ function SearchComandId() {
 
   const toPrintPedido = (
     <div className="flex align-itens-center justify-content-center column scroll">
-      <div className="imprimir " id="imprimir">
+      <div className="imprimir text-left" id="imprimir">
         <b className="poppins"> Número da comanda: </b>
         {searchId}
 
@@ -137,6 +137,10 @@ function SearchComandId() {
                   />
                 );
               })}
+              <li className="poppins">
+                <b className="poppins"> Total pedido: </b>
+                {element.total.toFixed(2).toString().replace(".", ",")}
+              </li>
             </ul>
           );
         })}
