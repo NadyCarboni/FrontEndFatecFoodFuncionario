@@ -1,46 +1,67 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<img src='https://svgshare.com/i/jvM.svg' title='Fatec food' height="auto" width="100%"/>
+# Fatec Food
+"Fatec food" foi o nome que escolhemos para batizar o aplicativo desenvolvido para a apresentação do nosso grupo de TCC, apresentado dia 20/06/2022 na Faculdade de Técnologia de Sorocaba, o qual obteve nota máxima em sua apresentação.
+<img src='https://64.media.tumblr.com/761a7aae3e0b72f9be06459255eef75f/d5548dfffa0dd344-54/s2048x3072/9dddc60c8746869863495ebf6b5dd8bf8665e19d.pnj' title='divider' height="30px" width="100%"/>
+### Integrantes
 
-## Available Scripts
+- [Eric Hideki Kataoka Ferreira](https://github.com/EricHidekiKataokaFerreira)
+- [Fernando Yuji Mochizuki Okano](https://github.com/FernandoY2203)
+- [João Gabriel de Oliveira Tardelli](https://github.com/Subordem)
+- [Nádia Mirka Carboni](https://github.com/NadyCarboni)
+- [Vinicius Fogaça de Oliveira](https://github.com/ViniciusOliveira2)
 
-In the project directory, you can run:
+<img src='https://64.media.tumblr.com/761a7aae3e0b72f9be06459255eef75f/d5548dfffa0dd344-54/s2048x3072/9dddc60c8746869863495ebf6b5dd8bf8665e19d.pnj' title='divider' height="30px" width="100%"/>
 
-### `npm start`
+### Objetivo:
+O objetivo deste trabalho foi desenvolver uma aplicação que fosse capaz de agilizar e automatizar os pedidos feitos nos restaurantes.
+<img src='https://64.media.tumblr.com/761a7aae3e0b72f9be06459255eef75f/d5548dfffa0dd344-54/s2048x3072/9dddc60c8746869863495ebf6b5dd8bf8665e19d.pnj' title='divider' height="30px" width="100%"/>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Delimitação do projeto
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- De acordo com a GS1 Brasil (2020), a automação no setor de comércio, cresceu 11% entre 2017 e 2020.
+- Pedidos anotados manualmente são passíveis de erros
+- Um sistema automatizado poderia melhorar o processo dos pedidos
 
-### `npm test`
+<img src='https://64.media.tumblr.com/761a7aae3e0b72f9be06459255eef75f/d5548dfffa0dd344-54/s2048x3072/9dddc60c8746869863495ebf6b5dd8bf8665e19d.pnj' title='divider' height="30px" width="100%"/>
+### Tecnologias utililizadas:
+###### Front-end:
+- React
+- HTML
+- CSS
+- Typescript
+- Javascript
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+###### Backend:
+- C#
+- Json
+- ASP.NET
+- HTTP
 
-### `npm run build`
+###### Servidor:
+- Amazon EC2
+- Apache
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+###### Banco de dados:
+- My SQL
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+###### API's externas
+- Google charts
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<img src='https://64.media.tumblr.com/761a7aae3e0b72f9be06459255eef75f/d5548dfffa0dd344-54/s2048x3072/9dddc60c8746869863495ebf6b5dd8bf8665e19d.pnj' title='divider' height="30px" width="100%"/>
 
-### `npm run eject`
+### Repositórios Github:
+- [Front-end Funcionário](https://github.com/NadyCarboni/FrontEndFatecFoodFuncionario)
+- [Front-end Cliente](https://github.com/NadyCarboni/FrontEnd-fatec-food)
+- [API](https://github.com/ViniciusOliveira2/FatecFoodAPI)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<img src='https://64.media.tumblr.com/761a7aae3e0b72f9be06459255eef75f/d5548dfffa0dd344-54/s2048x3072/9dddc60c8746869863495ebf6b5dd8bf8665e19d.pnj' title='divider' height="30px" width="100%"/>
+### Conclusão:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- O projeto teve como base o funcionamento do sistema de pedidos em restaurantes. 
+- A aplicação foi criada com o intuito de automatizar os pedidos e gerar um  cardápio digital, facilitando os processos para os clientes e funcionários.
+- Para o seu desenvolvimento foi necessário o aprendizado da implementação do Front-end com o back-end, hospedagem em nuvem e como gerar Qr code.
+- Os objetivos específicos que eram automatizar o pedido dos clientes e garantir um maior controle dos pedidos feitos foram atingidos.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+<img src='https://64.media.tumblr.com/761a7aae3e0b72f9be06459255eef75f/d5548dfffa0dd344-54/s2048x3072/9dddc60c8746869863495ebf6b5dd8bf8665e19d.pnj' title='divider' height="30px" width="100%"/>
