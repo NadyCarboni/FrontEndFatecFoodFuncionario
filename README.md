@@ -55,6 +55,7 @@ O objetivo deste trabalho foi desenvolver uma aplicação que fosse capaz de agi
 - [API](https://github.com/ViniciusOliveira2/FatecFoodAPI)
 
 <img src='https://64.media.tumblr.com/761a7aae3e0b72f9be06459255eef75f/d5548dfffa0dd344-54/s2048x3072/9dddc60c8746869863495ebf6b5dd8bf8665e19d.pnj' title='divider' height="30px" width="100%"/>
+
 ### Conclusão:
 
 - O projeto teve como base o funcionamento do sistema de pedidos em restaurantes. 
