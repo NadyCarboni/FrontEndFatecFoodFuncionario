@@ -1,5 +1,3 @@
-# Getting Started with Create React App
-
 <img src='https://svgshare.com/i/jvM.svg' title='Fatec food' height="auto" width="100%"/>
 # Fatec Food
 "Fatec food" foi o nome que escolhemos para batizar o aplicativo desenvolvido para a apresentação do nosso grupo de TCC, apresentado dia 20/06/2022 na Faculdade de Técnologia de Sorocaba, o qual obteve nota máxima em sua apresentação.
